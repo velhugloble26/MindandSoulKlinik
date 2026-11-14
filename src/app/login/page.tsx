@@ -1,0 +1,128 @@
+"use client";
+
+import { AUTH_ME, LOGIN } from "@/utils/api";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import { MotionReveal } from "@/components/ui/Motion";
+import { Eye, EyeOff } from "lucide-react";
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [redirectTarget, setRedirectTarget] = useState("/my-bookings");
+  useEffect(() => {
+    const target =
+      new URLSearchParams(window.location.search).get("redirect") ||
+      "/my-bookings";
+    window.setTimeout(() => setRedirectTarget(target), 0);
+    fetch(AUTH_ME, { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        if (payload?.success && payload?.data?.user) router.replace(target);
+      })
+      .catch(() => undefined);
+  }, [router]);
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    if (loading) return;
+    setError("");
+    setLoading(true);
+    try {
+      const response = await fetch(LOGIN, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !payload?.success) {
+        const detail = Array.isArray(payload?.errors)
+          ? payload.errors.join(" ")
+          : payload?.message;
+        throw new Error(detail || "Unable to sign in.");
+      }
+      const destination =
+        redirectTarget !== "/my-bookings"
+          ? redirectTarget
+          : payload.data?.user?.role === "admin"
+            ? "/admin"
+            : "/my-bookings";
+      router.replace(destination);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to sign in.");
+    } finally {
+      setLoading(false);
+    }
+  }
+  return (
+    <main className="auth-page">
+      <MotionReveal className="auth-card">
+        <h1 className="text-headline-lg auth-title ui-heading">Login</h1>
+        <p className="auth-subtitle">
+          Access your bookings and session details securely.
+        </p>
+        <form onSubmit={submit} className="auth-form">
+          <div>
+            <label className="auth-field">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              autoComplete="email"
+              className="auth-input"
+              placeholder="you@example.com"
+            />
+          </div>
+          <div>
+            <label className="auth-field">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+                autoComplete="current-password"
+                className="auth-input pr-12"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+                onClick={() => setShowPassword((visible) => !visible)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#5a6770] hover:text-[#173f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6a8ea1]"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </div>
+          <div className="text-right">
+            <Link href="/forgot-password" className="auth-link text-sm">
+              Forgot password?
+            </Link>
+          </div>
+          {error && (
+            <div role="alert" className="auth-inline-message">
+              {error}
+            </div>
+          )}
+          <button type="submit" disabled={loading} className="auth-button">
+            {loading ? "Signing in…" : "Login"}
+          </button>
+        </form>
+        <div className="auth-footer">
+          <span>Don’t have an account?</span>
+          <br />
+          <Link href="/signup" className="auth-link">
+            Create one
+          </Link>
+        </div>
+      </MotionReveal>
+    </main>
+  );
+}

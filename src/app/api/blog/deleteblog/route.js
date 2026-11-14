@@ -1,0 +1,35 @@
+import connectDB from "../../../../config/dbconnection";
+import {
+  success,
+  serverError,
+  validationError,
+} from "../../../../utils/apiResponse";
+import BlogService from "../../../../services/blogServices";
+import { requireAdmin } from "../../../../utils/auth";
+
+import { z } from "zod";
+
+export async function DELETE(req) {
+  try {
+    const auth = await requireAdmin(req);
+    if (auth.error) return auth.error;
+    await connectDB();
+    const validation = z
+      .object({ blogId: z.string().min(1) })
+      .safeParse(await req.json());
+    if (!validation.success)
+      return validationError(["Blog id is required."], 422);
+    const result = await BlogService.deleteBlog(validation.data.blogId);
+    return success(
+      result.cleanupPending
+        ? "Blog deleted; image cleanup is pending."
+        : result.message,
+      result,
+    );
+  } catch (error) {
+    console.error("DELETE_BLOG_ERROR:", error);
+    return error.statusCode
+      ? validationError([error.message], error.statusCode)
+      : serverError("Unable to delete blog.");
+  }
+}
