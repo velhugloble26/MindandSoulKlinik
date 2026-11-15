@@ -36,10 +36,10 @@ const footerSocialLinks = [
     href: "https://www.facebook.com/mindandsoulklinic",
     icon: BsFacebook,
   },
-  { label: "Call Adore Life", href: "tel:+917304490951", icon: Phone },
+  { label: "Call Mind And Soul Klinic", href: "tel:+919811378979 ", icon: Phone },
   {
     label: "Chat on WhatsApp",
-    href: "https://wa.me/917304490951",
+    href: "https://wa.me/919811378979 ",
     icon: PiWhatsappLogo,
   },
 ];

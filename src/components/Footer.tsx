@@ -28,10 +28,10 @@ const footerSocialLinks = [
     icon: BsFacebook,
   },
   // { label: "Twitter", href: "https://twitter.com/", icon: BsTwitter },
-  { label: "Call Adore Life", href: "tel:+917304490951", icon: Phone },
+  { label: "Call Mind And Soul Klinic", href: "tel:+919811378979 ", icon: Phone },
   {
     label: "Chat on WhatsApp",
-    href: "https://wa.me/917304490951",
+    href: "https://wa.me/919811378979 ",
     icon: PiWhatsappLogo,
   },
 ];
@@ -54,10 +54,10 @@ export default function Footer() {
         }}
       >
         {/* Brand */}
-        <Link href="/" aria-label="Adore Life – Home">
+        <Link href="/" aria-label="Mind And Soul Klinic – Home">
           <Image
             src={LOGO_URL}
-            alt="Adore Life"
+            alt="Mind And Soul Klinic"
             width={1024}
             height={1024}
             className="transition-transform duration-500 hover:scale-105 hover:opacity-80"
@@ -118,7 +118,7 @@ export default function Footer() {
             className="text-body-md"
             style={{ color: "var(--color-on-surface)" }}
           >
-            © Adore Life. Because everyone deserves to be understood.
+            © Mind And Soul Klinic. Because everyone deserves to be understood.
           </p>
         </div>
 

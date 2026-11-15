@@ -389,16 +389,12 @@ export default function ConversationPage() {
 
                       <div className="min-w-0 text-body-md ui-copy">
                         <p className="mb-2 font-bold ui-text">
-                          Somani Health Clinic
+                          E-339, Greater Kailash-1, Block E, Greater Kailash I,
+                          Greater Kailash, New Delhi, Delhi 110048
                         </p>
 
-                        <p>First Floor, Tropical Lagoon,</p>
-                        <p>Anand Nagar, Kavesar, GB Road,</p>
-                        <p>Thane (W) – 400615</p>
-                        <p>Maharashtra, India</p>
-
                         <a
-                          href="https://maps.google.com/?q=Somani+Health+Clinic,+First+Floor,+Tropical+Lagoon,+Anand+Nagar,+Kavesar,+GB+Road,+Thane+West+400615"
+                          href="https://www.google.com/maps/place/Mind+And+Soul+Klinic/@28.5511933,77.2398662,18z/data=!4m10!1m2!2m1!1smind+and+soul+klinic!3m6!1s0x390ce551b265d965:0xfbcefef3610880be!8m2!3d28.551072!4d77.239915!15sChRtaW5kIGFuZCBzb3VsIGtsaW5pY1oWIhRtaW5kIGFuZCBzb3VsIGtsaW5pY5IBDHBzeWNob2xvZ2lzdOABAA!16s%2Fg%2F11rtrlbzrb?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D"
                           className="mt-2 inline-flex items-center gap-2 text-label-md ui-accent transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -424,7 +420,7 @@ export default function ConversationPage() {
                             Contact no:
                           </span>{" "}
                           <a
-                            href="tel:+917304490951"
+                            href="tel:+919811378979 "
                             className="ui-accent"
                           >
                             +91 73044 90951
@@ -452,8 +448,8 @@ export default function ConversationPage() {
                   <div className="min-w-0">
                     <div className="min-h-[300px] overflow-hidden rounded-xl border border-white/60 bg-white/40">
                       <iframe
-                        title="Somani Health Clinic location map"
-                        src="https://maps.google.com/maps?q=Somani+Health+Clinic,+First+Floor,+Tropical+Lagoon,+Anand+Nagar,+Kavesar,+GB+Road,+Thane+West+400615&output=embed"
+                        title="Mind And Soul Klinic, Greater Kailash, New Delhi location map"
+                        src="https://maps.google.com/maps?q=28.551072%2C77.239915&z=18&output=embed"
                         className="block h-[300px] w-full border-0 lg:h-[380px]"
                         loading="lazy"
                         allowFullScreen
@@ -490,7 +486,7 @@ export default function ConversationPage() {
 
       <p>
         <strong>Important:</strong> The services offered through
-        Adore Life are not suitable for crisis situations or mental
+        Mind And Soul Klinic are not suitable for crisis situations or mental
         health emergencies.
       </p>
 

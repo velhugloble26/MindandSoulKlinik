@@ -98,13 +98,47 @@ h1, h2, h3 {
   background: var(--white); border: 1px solid var(--primary); border-radius: var(--radius-sm);
 }
 .badge-soft { background: var(--section-background); }
-.check-list { display: grid; gap: .5rem; margin-top: 1.1rem; font-size: .95rem; }
-.check-list li { display: flex; gap: .6rem; align-items: flex-start; }
-.check-list svg { flex: none; margin-top: .3rem; color: var(--heading); }
+.check-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  list-style: none;
+  padding: 3px;
+  margin-top: 2px;
+}
+
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .check-list {
+    grid-template-columns: 1fr;
+  }
+}.check-list svg { flex: none; margin-top: .3rem; color: var(--heading); }
+
+
+
 
 /* ---------- Images ---------- */
 .media-frame { position: relative; overflow: hidden; border-radius: var(--radius-md); background: var(--card-therapy); aspect-ratio: 4 / 5; }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 1024px) {
+  .therapist-intro .split,
+  .approach-intro .split,
+  .faq-intro .split,
+  .journey-intro .split { align-items: stretch; }
+  .therapist-intro .split > :first-child,
+  .approach-intro .split > :last-child,
+  .faq-intro .split > :first-child,
+  .journey-intro .split > :first-child { position: relative; min-height: 0; }
+  .therapist-intro .media-frame,
+  .approach-intro .media-frame,
+  .faq-intro .media-frame,
+  .journey-intro .media-frame { position: absolute; inset: 0; aspect-ratio: auto; }
+}
 .hero-glow {
   background:
     radial-gradient(60% 60% at 15% 20%, rgba(161,225,233,.55), transparent 70%),
@@ -218,17 +252,20 @@ h1, h2, h3 {
   padding: clamp(1.5rem, 4vw, 3rem);
 }
 .service-card-image {
+  position: relative;
   display: grid;
   min-height: 14rem;
-  place-items: center;
-  padding: clamp(1.5rem, 5vw, 3rem);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
   background: var(--card-therapy);
 }
 .service-card-image img {
   display: block;
-  width: min(100%, 22rem);
-  height: auto;
-  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .service-card-subtitle {
   color: var(--heading);
@@ -257,6 +294,9 @@ h1, h2, h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
     gap: 0;
+  }
+  .service-card-image {
+    aspect-ratio: auto;
   }
   .service-card-reverse .service-card-content {
     order: 2;

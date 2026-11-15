@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Understanding Therapy",
   description:
-    "Learn what therapy is, what it isn't, and how the Adore Life Journey can help you move from feeling understood to experiencing emotional freedom.",
+    "Learn what therapy is, what it isn't, and how the Mind And Soul Klinic Journey can help you move from feeling understood to experiencing emotional freedom.",
 };
 
 const therapyFor = [
@@ -104,7 +104,7 @@ const faqItems = [
   },
   {
     q: "What if I'm not sure therapy is right for me?",
-    a: "You don't have to be certain before reaching out. A first conversation can help you understand whether therapy feels appropriate and whether Adore Life feels like the right space for you.",
+    a: "You don't have to be certain before reaching out. A first conversation can help you understand whether therapy feels appropriate and whether Mind And Soul Klinic feels like the right space for you.",
   },
 ];
 
@@ -427,7 +427,7 @@ export default function TherapyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <span className="text-label-md uppercase tracking-widest mb-4 block ui-muted">
-                The Adore Life Journey™
+                The Mind And Soul Klinic Journey™
               </span>
               <MotionText>
                 <h2 className="text-headline-lg mb-6 ui-heading">

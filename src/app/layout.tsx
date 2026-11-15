@@ -44,18 +44,18 @@ const montserrat = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Adore Life – Because everyone deserves to be understood",
-    template: "%s | Adore Life",
+    default: "Mind And Soul Klinic – Because everyone deserves to be understood",
+    template: "%s | Mind And Soul Klinic",
   },
   description:
-    "Adore Life offers individual therapy, couples therapy, and corporate wellbeing services in Thane, India. Begin your journey toward emotional clarity and self-understanding with therapist Kiran Khullar.",
+    "Mind And Soul Klinic offers individual therapy, couples therapy, and corporate wellbeing services in New Delhi, India. Begin your journey toward emotional clarity and self-understanding with therapist Kiran Khullar.",
   metadataBase: new URL("https://www.mindandsoulklinic.com"),
   icons: {
     icon: [{ url: "/fevicons.webp", type: "image/webp" }],
     shortcut: [{ url: "/fevicons.webp", type: "image/webp" }],
   },
   openGraph: {
-    siteName: "Adore Life",
+    siteName: "Mind And Soul Klinic",
     type: "website",
     locale: "en_IN",
   },

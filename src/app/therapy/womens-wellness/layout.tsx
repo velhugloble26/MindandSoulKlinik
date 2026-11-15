@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Women's Wellness Therapy",
   description:
-    "A dedicated, compassionate therapy space for women navigating postpartum changes, self-worth, hormonal shifts, relationship dynamics and life transitions — with Kiran Khullar at Adore Life, Thane.",
+    "A dedicated, compassionate therapy space for women navigating postpartum changes, self-worth, hormonal shifts, relationship dynamics and life transitions — with Kiran Khullar at Mind And Soul Klinic, New Delhi.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

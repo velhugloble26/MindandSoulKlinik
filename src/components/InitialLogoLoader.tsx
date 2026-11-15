@@ -23,12 +23,12 @@ export default function InitialLogoLoader() {
     <div
       className={`fixed inset-0 z-[9999] grid place-items-center bg-[var(--color-background)] transition-opacity duration-300 ${leaving ? "pointer-events-none opacity-0" : "opacity-100"}`}
       role="status"
-      aria-label="Loading Adore Life"
+      aria-label="Loading Mind And Soul Klinic"
     >
       <div className="flex flex-col items-center gap-5">
         <Image
           src="/website_logo.avif"
-          alt="Adore Life"
+          alt="Mind And Soul Klinic"
           width={1024}
           height={1024}
           priority

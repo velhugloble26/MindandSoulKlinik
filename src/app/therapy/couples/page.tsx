@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Couples Therapy",
   description:
-    "Couples therapy at Adore Life — not about deciding who is right, but about understanding each other more deeply and building a healthier relationship.",
+    "Couples therapy at Mind And Soul Klinic — not about deciding who is right, but about understanding each other more deeply and building a healthier relationship.",
 };
 
 const challenges = [
@@ -111,7 +111,7 @@ export default function CouplesTherapyPage() {
           >
             <MotionItem>
               <p>
-                Couples therapy at Adore Life is not about deciding who is right
+                Couples therapy at Mind And Soul Klinic is not about deciding who is right
                 or wrong. It is about creating a space where both partners can
                 be heard, understood and can begin to understand each other more
                 clearly.
@@ -171,7 +171,7 @@ export default function CouplesTherapyPage() {
           <div className="max-w-3xl mx-auto">
             <MotionText>
               <h2 className="text-headline-lg text-center mb-16 ui-heading">
-                How couples therapy works at Adore Life.
+                How couples therapy works at Mind And Soul Klinic.
               </h2>
             </MotionText>
             <MotionStagger amount={0.2} className="space-y-8">

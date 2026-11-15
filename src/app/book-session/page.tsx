@@ -787,7 +787,7 @@ export default function BookSessionPage() {
         key: keyId,
         amount,
         currency,
-        name: "Adore Life",
+        name: "Mind And Soul Klinic",
         description: selectedPackageName,
         order_id: order.id,
         handler: async function (response: RazorpayCallback) {

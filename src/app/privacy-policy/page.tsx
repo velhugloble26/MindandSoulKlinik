@@ -20,7 +20,7 @@ const sections = [
       <>
         <p>
           The information we request and why we need it will be shown when you
-          provide it. Depending on how you use Adore Life, we may collect:
+          provide it. Depending on how you use Mind And Soul Klinic, we may collect:
         </p>
         <ul>
           <li>
@@ -97,7 +97,7 @@ const sections = [
       <p>
         Online payments are processed through Razorpay. Payment information is
         submitted to Razorpay and handled under its privacy and security
-        practices. Adore Life receives payment and transaction details needed to
+        practices. Mind And Soul Klinic receives payment and transaction details needed to
         confirm and manage a booking; we do not store your full card number or
         card security code. We may also use service providers for website
         hosting, database storage, email delivery, security, and other
@@ -110,7 +110,7 @@ const sections = [
     title: "6. Cookies and Similar Technologies",
     content: (
       <p>
-        Adore Life uses essential browser storage and authentication cookies to
+        Mind And Soul Klinic uses essential browser storage and authentication cookies to
         support account sign-in, security, and site operation. The website may
         also use session storage for temporary navigation state. Third-party
         features, such as payment checkout or embedded maps, may use their own
@@ -137,7 +137,7 @@ const sections = [
           </li>
           <li>
             When necessary to protect the rights, safety, or security of
-            clients, Adore Life, or others.
+            clients, Mind And Soul Klinic, or others.
           </li>
         </ul>
         <p>We do not sell your personal information.</p>
@@ -206,14 +206,15 @@ const sections = [
       <>
         <p>For privacy questions or requests, contact:</p>
         <p>
-          <strong>Adore Life — By Kiran Khullar</strong>
+          <strong>Mind And Soul Klinic — By Kiran Khullar</strong>
           <br />
           Email:{" "}
           <a className="underline" href="mailto:mindandsoulklinic@gmail.com">
             mindandsoulklinic@gmail.com
           </a>
           <br />
-          Location: Thane, Maharashtra, India
+          Location: E-339, Greater Kailash-1, Block E, Greater Kailash I,
+          Greater Kailash, New Delhi, Delhi 110048
           <br />
           Website:{" "}
           <a className="underline" href="https://www.mindandsoulklinic.com/">
@@ -240,7 +241,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto max-w-[850px]">
           <header className="mb-12 text-center">
             <span className="text-label-lg uppercase tracking-widest mb-4 block ui-muted">
-              Adore Life — Because everyone needs to be understood.
+              Mind And Soul Klinic — Because everyone needs to be understood.
             </span>
             <h1 className="text-headline-lg ui-heading">Privacy Policy</h1>
             <p className="mt-4 text-body-md ui-copy">
@@ -248,7 +249,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <p className="mx-auto mt-6 max-w-2xl text-body-lg ui-copy">
               Your privacy matters. This policy explains what information we
-              collect when you use Adore Life&apos;s website and services, and
+              collect when you use Mind And Soul Klinic&apos;s website and services, and
               how we use and protect it.
             </p>
           </header>

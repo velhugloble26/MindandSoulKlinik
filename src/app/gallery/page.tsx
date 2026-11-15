@@ -7,7 +7,7 @@ import { Gallery } from "@/schema/schema";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Moments, spaces, and programmes from the Adore Life community.",
+  description: "Moments, spaces, and programmes from the Mind And Soul Klinic community.",
 };
 type GalleryItem = {
   _id: string;
@@ -57,7 +57,7 @@ export default async function GalleryPage() {
                 Our gallery is being curated.
               </h2>
               <p className="text-body-md ui-copy">
-                Please return soon to see moments from Adore Life.
+                Please return soon to see moments from Mind And Soul Klinic.
               </p>
             </div>
           ) : (

@@ -10,6 +10,11 @@ import TherapistIntro from "@/components/ui/TherapistIntro";
 import ServiceCards, { type ServiceItem } from "@/components/ui/ServiceCards";
 import Testimonials from "@/components/ui/Testimonials";
 import LatestBlogs from "@/components/ui/LatestBlogs";
+import BringsYouHere from "@/components/ui/BringsYouHere";
+import SupportMoments from "@/components/ui/OurApproach";
+import OurApproach from "@/components/ui/OurApproach";
+import YourJourney from "@/components/ui/YouJourney";
+import FrequentlyAskedQuestions from "@/components/ui/FrequentlyAskedQuestions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -66,8 +71,12 @@ export default async function HomePage() {
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Hero />
+      <BringsYouHere />
       <TherapistIntro />
       <ServiceCards services={cards} />
+      <OurApproach />
+      <YourJourney />
+      <FrequentlyAskedQuestions />
       <Testimonials items={testimonials} />
       <LatestBlogs items={blogs} />
       <section className="section">

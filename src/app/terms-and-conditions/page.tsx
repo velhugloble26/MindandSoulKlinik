@@ -3,9 +3,9 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Adore Life",
+  title: "Terms & Conditions | Mind And Soul Klinic",
   description:
-    "Review the terms and conditions for booking and using therapy, consultation, and wellness services at Adore Life.",
+    "Review the terms and conditions for booking and using therapy, consultation, and wellness services at Mind And Soul Klinic.",
 };
 
 const sections = [
@@ -13,7 +13,7 @@ const sections = [
     title: "1. Services Offered",
     content: (
       <>
-        <p>Adore Life provides:</p>
+        <p>Mind And Soul Klinic provides:</p>
         <ul>
           <li>Individual Therapy</li>
           <li>Couples Therapy</li>
@@ -48,7 +48,7 @@ const sections = [
         </li>
 
         <li>
-          If Adore Life needs to reschedule an appointment, an alternative
+          If Mind And Soul Klinic needs to reschedule an appointment, an alternative
           appointment or applicable refund will be offered.
         </li>
       </ul>
@@ -114,7 +114,7 @@ const sections = [
     content: (
       <p>
         Therapy is a collaborative process, and outcomes vary from person to
-        person. Adore Life does not guarantee specific therapeutic or
+        person. Mind And Soul Klinic does not guarantee specific therapeutic or
         relationship outcomes. Our services do not replace emergency care or
         medical treatment where required.
       </p>
@@ -168,7 +168,7 @@ const sections = [
     title: "9. Changes to These Terms",
     content: (
       <p>
-        Adore Life may update these Terms & Conditions from time to time.
+        Mind And Soul Klinic may update these Terms & Conditions from time to time.
         Revised terms will be published on the website with an updated effective
         date.
       </p>
@@ -185,7 +185,7 @@ const sections = [
         </p>
 
         <p className="font-medium ui-heading">
-          Adore Life — By Kiran Khullar
+          Mind And Soul Klinic — By Kiran Khullar
         </p>
 
         <p>
@@ -197,7 +197,8 @@ const sections = [
             mindandsoulklinic@gmail.com
           </a>
           <br />
-          Location: Thane, Maharashtra, India
+          Location: E-339, Greater Kailash-1, Block E, Greater Kailash I,
+          Greater Kailash, New Delhi, Delhi 110048
         </p>
       </>
     ),
@@ -213,7 +214,7 @@ export default function TermsAndConditionsPage() {
         <div className="mx-auto max-w-[850px]">
           <header className="mb-12 text-center">
             <span className="text-label-lg uppercase tracking-widest mb-4 block ui-muted">
-              Adore Life — Because everyone needs to be understood.
+              Mind And Soul Klinic — Because everyone needs to be understood.
             </span>
 
             <h1 className="text-headline-lg ui-heading">
@@ -225,7 +226,7 @@ export default function TermsAndConditionsPage() {
             </p>
 
             <p className="mx-auto mt-6 max-w-2xl text-body-lg ui-copy">
-              Welcome to Adore Life. By booking or using our services, you agree
+              Welcome to Mind And Soul Klinic. By booking or using our services, you agree
               to the following Terms & Conditions.
             </p>
           </header>

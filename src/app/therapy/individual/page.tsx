@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Individual Therapy",
   description:
-    "Individual therapy at Adore Life offers a private, compassionate space to understand your thoughts, emotions and patterns, with therapist Kiran Khullar in Thane, India.",
+    "Individual therapy at Mind And Soul Klinic offers a private, compassionate space to understand your thoughts, emotions and patterns, with therapist Kiran Khullar in New Delhi, India.",
 };
 
 const INDIVIDUAL_IMG =
@@ -115,7 +115,7 @@ export default function IndividualTherapyPage() {
             >
               <MotionItem>
                 <p>
-                  Individual therapy at Adore Life offers you a private,
+                  Individual therapy at Mind And Soul Klinic offers you a private,
                   confidential space to explore what is happening in your
                   life—without judgement, pressure or advice you didn't ask for.
                 </p>
@@ -204,7 +204,7 @@ export default function IndividualTherapyPage() {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <MotionText>
                 <h2 className="text-headline-lg ui-heading">
-                  How individual therapy works at Adore Life.
+                  How individual therapy works at Mind And Soul Klinic.
                 </h2>
               </MotionText>
             </div>

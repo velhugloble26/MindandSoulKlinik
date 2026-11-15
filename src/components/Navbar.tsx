@@ -89,10 +89,10 @@ export default function Navbar() {
           className="site-navbar-inner flex justify-between items-center w-full py-5 mx-auto"
         >
           {/* Brand */}
-          <Link href="/" aria-label="Adore Life – Home" className="site-brand-link">
+          <Link href="/" aria-label="Mind And Soul Klinic – Home" className="site-brand-link">
             <Image
               src={LOGO_URL}
-              alt="Adore Life"
+              alt="Mind And Soul Klinic"
               width={1024}
               height={1024}
               className="site-brand-logo h-24 w-auto object-contain transition-transform duration-500 hover:scale-105 hover:opacity-90"

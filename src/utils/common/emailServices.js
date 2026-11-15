@@ -47,7 +47,7 @@ class EmailService {
     }
     const from = configuredFrom?.includes("<")
       ? configuredFrom
-      : `"Adore Life with Nidhi" <${configuredFrom}>`;
+      : `"Mind And Soul Klinic with Nidhi" <${configuredFrom}>`;
 
     const info = await transporter.sendMail({
       from,
@@ -69,7 +69,7 @@ class EmailService {
 
 
   async sendSignupOtp({ email, otp, expiresInMinutes = 5 }) {
-    const subject = "Verify your Adore Life with Nidhi account";
+    const subject = "Verify your Mind And Soul Klinic with Nidhi account";
 
     const text = `
 Your signup verification OTP is: ${otp}
@@ -81,7 +81,7 @@ If you did not create this account, please ignore this email.
 
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto">
-        <h2>Verify your Adore Life with Nidhi account</h2>
+        <h2>Verify your Mind And Soul Klinic with Nidhi account</h2>
 
         <p>Use the following OTP to complete your signup:</p>
 
@@ -117,16 +117,16 @@ If you did not create this account, please ignore this email.
   }
 
   async sendWelcomeEmail({ email, name }) {
-    const subject = "Welcome to Adore Life with Nidhi";
-    const text = `Hello ${name || "there"},\n\nWelcome to Adore Life with Nidhi. Your account login was successful.\n\nIf this was not you, please reset your password.`;
-    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Welcome to Adore Life with Nidhi</h2><p>Hello ${name || "there"},</p><p>Your account login was successful.</p><p>If this was not you, please reset your password immediately.</p></div>`;
+    const subject = "Welcome to Mind And Soul Klinic with Nidhi";
+    const text = `Hello ${name || "there"},\n\nWelcome to Mind And Soul Klinic with Nidhi. Your account login was successful.\n\nIf this was not you, please reset your password.`;
+    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Welcome to Mind And Soul Klinic with Nidhi</h2><p>Hello ${name || "there"},</p><p>Your account login was successful.</p><p>If this was not you, please reset your password immediately.</p></div>`;
     return this.sendEmail({ to: email, subject, text, html });
   }
 
   async sendPasswordResetEmail({ email, resetUrl, expiresInMinutes = 15 }) {
-    const subject = "Reset your Adore Life with Nidhi password";
+    const subject = "Reset your Mind And Soul Klinic with Nidhi password";
     const text = `Reset your password using this link: ${resetUrl}\n\nThis link expires in ${expiresInMinutes} minutes. If you did not request this, ignore this email.`;
-    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Reset your password</h2><p>We received a request to reset your Adore Life with Nidhi password.</p><p><a href="${resetUrl}" style="display:inline-block;padding:12px 20px;background:#003044;color:#fff;text-decoration:none;border-radius:8px">Choose a new password</a></p><p>This link expires in <strong>${expiresInMinutes} minutes</strong>.</p><p>If you did not request this, you can safely ignore this email.</p></div>`;
+    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Reset your password</h2><p>We received a request to reset your Mind And Soul Klinic with Nidhi password.</p><p><a href="${resetUrl}" style="display:inline-block;padding:12px 20px;background:#003044;color:#fff;text-decoration:none;border-radius:8px">Choose a new password</a></p><p>This link expires in <strong>${expiresInMinutes} minutes</strong>.</p><p>If you did not request this, you can safely ignore this email.</p></div>`;
     return this.sendEmail({ to: email, subject, text, html });
   }
 
@@ -202,7 +202,7 @@ If you did not create this account, please ignore this email.
         ? `New custom-time request: ${record.bookingId}`
         : `New booking: ${record.bookingId}`,
       text,
-      html: `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#173f4d"><h2>${isCustomTimeRequest ? "New custom appointment request received" : "New Adore Life booking"}</h2><table style="border-collapse:collapse;width:100%">${rows}</table></div>`,
+      html: `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#173f4d"><h2>${isCustomTimeRequest ? "New custom appointment request received" : "New Mind And Soul Klinic booking"}</h2><table style="border-collapse:collapse;width:100%">${rows}</table></div>`,
     });
   }
 
@@ -218,7 +218,7 @@ If you did not create this account, please ignore this email.
         ? "Clinic Session"
         : "Online Session";
     const deliveryDetails = record.sessionMode === "Offline"
-      ? "Clinic location: Somani Health Clinic, First Floor, Office 8, Tropical Lagoon, Anand Nagar, GB Road - 400615."
+      ? "Clinic location: E-339, Greater Kailash-1, Block E, Greater Kailash I, Greater Kailash, New Delhi, Delhi 110048."
       : "Online meeting details will be shared separately.";
     const subject = `Appointment confirmed: ${record.bookingId}`;
     const text = `Hello ${name},\n\nYour ${category} is confirmed for ${record.selectedDate} at ${record.selectedTime} IST.\nDuration: 60 minutes (30-minute buffer reserved).\nPayment reference: ${record.razorpayPaymentId || "Not available"}.\n\n${deliveryDetails}`;
@@ -262,8 +262,8 @@ If you did not create this account, please ignore this email.
         : "Appointment";
     const dateTime = `${session.date} at ${session.time} IST`;
     const subject = `${isAppointmentDay ? "Appointment today" : "Appointment reminder"}: ${record.bookingId}`;
-    const text = `Hello ${name},\n\n${reminderLabel} (${sessionLabel}) for booking ${record.bookingId}.\n\nDate and time: ${dateTime}\nSession type: ${session.sessionType || record.sessionType}\n\nWe look forward to seeing you.\n\nAdore Life with Nidhi`;
-    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>${escapeHtml(reminderLabel)}</h2><p>Hello ${escapeHtml(name)},</p><p>This is a reminder for your ${escapeHtml(sessionLabel.toLowerCase())}.</p><p><strong>Date and time:</strong> ${escapeHtml(dateTime)}<br><strong>Session type:</strong> ${escapeHtml(session.sessionType || record.sessionType)}</p><p>We look forward to seeing you.</p><p>Adore Life with Nidhi</p></div>`;
+    const text = `Hello ${name},\n\n${reminderLabel} (${sessionLabel}) for booking ${record.bookingId}.\n\nDate and time: ${dateTime}\nSession type: ${session.sessionType || record.sessionType}\n\nWe look forward to seeing you.\n\nMind And Soul Klinic with Nidhi`;
+    const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>${escapeHtml(reminderLabel)}</h2><p>Hello ${escapeHtml(name)},</p><p>This is a reminder for your ${escapeHtml(sessionLabel.toLowerCase())}.</p><p><strong>Date and time:</strong> ${escapeHtml(dateTime)}<br><strong>Session type:</strong> ${escapeHtml(session.sessionType || record.sessionType)}</p><p>We look forward to seeing you.</p><p>Mind And Soul Klinic with Nidhi</p></div>`;
 
     return this.sendEmail({
       to: customerEmail,
@@ -282,12 +282,12 @@ If you did not create this account, please ignore this email.
       })[character]);
       const name = `${record.firstName || ""} ${record.lastName || ""}`.trim();
       const requestedTime = `${record.selectedDate} at ${record.selectedTime} IST`;
-      const text = `Hello ${name || "there"},\n\nThank you for choosing Adore Life. We have successfully received your preferred appointment time request for ${requestedTime}. Our team will review your requested date and time and contact you after checking availability. Please note that this is only a request and your appointment is not confirmed yet.`;
+      const text = `Hello ${name || "there"},\n\nThank you for choosing Mind And Soul Klinic. We have successfully received your preferred appointment time request for ${requestedTime}. Our team will review your requested date and time and contact you after checking availability. Please note that this is only a request and your appointment is not confirmed yet.`;
       return this.sendEmail({
         to: record.email,
-        subject: "We received your Adore Life appointment request",
+        subject: "We received your Mind And Soul Klinic appointment request",
         text,
-        html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Custom appointment request received</h2><p>Hello ${escapeHtml(name || "there")},</p><p>Thank you for choosing Adore Life. We have successfully received your preferred appointment time request for <strong>${escapeHtml(requestedTime)}</strong>.</p><p>Our team will review your requested date and time and contact you after checking availability.</p><p><strong>This is only a request; your appointment is not confirmed yet.</strong></p></div>`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#173f4d"><h2>Custom appointment request received</h2><p>Hello ${escapeHtml(name || "there")},</p><p>Thank you for choosing Mind And Soul Klinic. We have successfully received your preferred appointment time request for <strong>${escapeHtml(requestedTime)}</strong>.</p><p>Our team will review your requested date and time and contact you after checking availability.</p><p><strong>This is only a request; your appointment is not confirmed yet.</strong></p></div>`,
       });
     }
     const name = `${record.firstName || ""} ${record.lastName || ""}`.trim();

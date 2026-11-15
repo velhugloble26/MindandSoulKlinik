@@ -13,7 +13,7 @@ export default function FloatingContactActions() {
       <a
         href="tel:+919833763977"
         className="floating-contact-action call-button"
-        aria-label="Call Adore Life"
+        aria-label="Call Mind And Soul Klinic"
       >
         <Phone aria-hidden="true" strokeWidth={2.25} />
       </a>

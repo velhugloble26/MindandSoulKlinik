@@ -74,7 +74,7 @@ export default function BlogList() {
           New reflections are on their way.
         </h2>
         <p className="text-body-md ui-copy">
-          Please return soon for articles from Adore Life.
+          Please return soon for articles from Mind And Soul Klinic.
         </p>
       </div>
     );

@@ -20,7 +20,7 @@ Session details
 
 Get in touch
 
-Somani Health Clinic, First Floor, Office 8, Tropical Lagoon, Anand Nagar, GB Road - 400615
+E-339, Greater Kailash-1, Block E, Greater Kailash I, Greater Kailash, New Delhi, Delhi 110048
 mindandsoulklinic@gmail.com
 Call/WhatsApp: +91 73044 90951`,
   informedConsent: `Informed Consent

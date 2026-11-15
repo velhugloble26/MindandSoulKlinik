@@ -4,12 +4,11 @@ import Reveal from "@/components/animations/Reveal";
 
 export default function TherapistIntro() {
   return (
-    <section className="section pt-40" id="therapist">
+    <section className="section pt-40 therapist-intro" id="therapist">
       <div className="container-site split">
         <Reveal direction="left">
           <div className="media-frame">
-            {/* Add the supplied photo at public/images/kiran-khullar.jpg */}
-            <Image src="/images/kiran-khullar.jpg" alt="Kiran Khullar" width={800} height={1000} />
+            <Image src="/kiran_khular.avif" alt="Kiran Khullar" width={800} height={1000} />
           </div>
         </Reveal>
         <Reveal direction="right">

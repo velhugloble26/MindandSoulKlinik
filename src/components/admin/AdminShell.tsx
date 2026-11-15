@@ -88,7 +88,7 @@ export default function AdminShell({
     <div className="min-h-screen surface-base lg:grid lg:grid-cols-[270px_1fr]">
       <header className="lg:hidden sticky top-0 z-40 glass-nav border-b border-surface px-4 py-3 flex items-center justify-between">
         <Link href="/admin" className="text-headline-md ui-heading">
-          Adore Life Admin
+          Mind And Soul Klinic Admin
         </Link>
         <button
           className="admin-icon-button"
@@ -110,7 +110,7 @@ export default function AdminShell({
           <House className="h-5 w-5" />
           <Image
             src="/website_logo.avif"
-            alt="Adore Life"
+            alt="Mind And Soul Klinic"
             width={1024}
             height={1024}
             className="h-12 w-auto"

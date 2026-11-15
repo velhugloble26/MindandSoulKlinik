@@ -91,7 +91,7 @@ export default function WomensWellnessPage() {
             </MotionText>
             <MotionReveal delay={0.2}>
               <p className="text-body-lg max-w-lg ui-copy">
-                Women's wellness therapy at Adore Life is a dedicated space to
+                Women's wellness therapy at Mind And Soul Klinic is a dedicated space to
                 explore what it means to exist as a woman — the pressures, the
                 roles, the invisible weight you carry — without judgment, in
                 complete confidence.
@@ -155,7 +155,7 @@ export default function WomensWellnessPage() {
               </MotionItem>
               <MotionItem>
                 <p>
-                  Women's wellness therapy at Adore Life is not about labelling
+                  Women's wellness therapy at Mind And Soul Klinic is not about labelling
                   or pathologising. It's about creating the conditions in which
                   you can finally exhale — and begin to understand, with
                   compassion, the woman you have become and the woman you want

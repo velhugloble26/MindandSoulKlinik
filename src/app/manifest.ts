@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Adore Life with Nidhi",
-    short_name: "Adore Life",
+    name: "Mind And Soul Klinic with Nidhi",
+    short_name: "Mind And Soul Klinic",
     description:
       "A welcoming space for therapy, emotional wellbeing, and personal growth with Kiran Khullar.",
     start_url: "/",
