@@ -1,15 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/animations/Reveal";
+import { HoverZoomContainer, HoverZoomImage } from "@/components/ui/Motion";
 
 export default function TherapistIntro() {
   return (
     <section className="section pt-40 therapist-intro" id="therapist">
       <div className="container-site split">
         <Reveal direction="left">
-          <div className="media-frame">
-            <Image src="/kiran_khular.avif" alt="Kiran Khullar" width={800} height={1000} />
-          </div>
+          <HoverZoomContainer className="media-frame">
+            <HoverZoomImage
+              src="/kiran_khular.avif"
+              alt="Kiran Khullar"
+              width={800}
+              height={1000}
+              className="w-full h-full object-cover"
+            />
+          </HoverZoomContainer>
         </Reveal>
         <Reveal direction="right">
           <h2 className="heading-lg">Meet Your Therapist</h2>

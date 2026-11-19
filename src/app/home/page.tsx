@@ -70,25 +70,27 @@ export default async function HomePage() {
     <>
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Hero />
-      <BringsYouHere />
-      <TherapistIntro />
-      <ServiceCards services={cards} />
-      <OurApproach />
-      <YourJourney />
-      <FrequentlyAskedQuestions />
-      <Testimonials items={testimonials} />
-      <LatestBlogs items={blogs} />
-      <section className="section">
-        <div className="container-site text-center">
-          <h2 className="heading-lg">Ready to talk?</h2>
-          <p className="text-body mx-auto mt-4">Call {SITE.phone} or send a message, and we will help you take the first step.</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/book-session" className="btn btn-primary">Book an Appointment</Link>
-            <Link href="/contact" className="btn btn-outline">Contact us</Link>
+      <main className="design-system-page">
+        <Hero />
+        <BringsYouHere />
+        <TherapistIntro />
+        <ServiceCards services={cards} />
+        <OurApproach />
+        <YourJourney />
+        <FrequentlyAskedQuestions />
+        <Testimonials items={testimonials} />
+        <LatestBlogs items={blogs} />
+        <section className="section">
+          <div className="container-site text-center">
+            <h2 className="heading-lg">Ready to talk?</h2>
+            <p className="text-body mx-auto mt-4">Call {SITE.phone} or send a message, and we will help you take the first step.</p>
+            <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <Link href="/book-session" className="btn btn-primary">Book an Appointment</Link>
+              <Link href="/contact" className="btn btn-outline">Contact us</Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </>
   );
 }

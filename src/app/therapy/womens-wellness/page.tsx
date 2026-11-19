@@ -117,7 +117,7 @@ export default function WomensWellnessPage() {
             direction="left"
             className="md:w-1/2 w-full relative group"
           >
-            <div className="w-full aspect-[4/3] rounded-xl overflow-hidden surface-container">
+            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden surface-container">
               <Image
                 src={HERO_IMG}
                 alt="A woman in a calm, light-filled space — reflecting quiet and safety"

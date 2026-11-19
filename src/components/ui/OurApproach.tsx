@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/animations/Reveal";
+import { HoverZoomContainer, HoverZoomImage } from "@/components/ui/Motion";
 
 const approaches = [
   {
@@ -67,7 +67,7 @@ export default function OurApproach() {
 
             <p className="text-body mt-7">
               Every individual is unique. The therapeutic approach
-              is selected according to the person's concerns,
+              is selected according to the person&apos;s concerns,
               needs and suitability, ensuring personalised
               and supportive care.
             </p>
@@ -84,15 +84,15 @@ export default function OurApproach() {
         {/* RIGHT SIDE - IMAGE */}
 
         <Reveal direction="right">
-          <div className="media-frame">
-            <Image
+          <HoverZoomContainer className="media-frame">
+            <HoverZoomImage
               src="/our-approach.jpeg"
               alt="Our therapeutic approach at Mind and Soul Klinic"
               width={800}
               height={1000}
               className="w-full h-full object-cover"
             />
-          </div>
+          </HoverZoomContainer>
         </Reveal>
 
       </div>

@@ -8,12 +8,9 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import {
   MotionSection,
-  MotionText,
   MotionReveal,
   MotionStagger,
   MotionItem,
-  HoverZoomContainer,
-  HoverZoomImage,
 } from "@/components/ui/Motion";
 
 const initialForm = {
@@ -468,124 +465,112 @@ export default function ConversationPage() {
 
 
         {/* ── Emergency Support ── */}
-<MotionSection
-  id="emergency-helplines"
-  className="section-pad w-full py-section"
->
-  <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 px-4 sm:px-6 md:gap-8 lg:px-8">
+        {/* <MotionSection
+          id="emergency-helplines"
+          className="section-pad w-full py-section"
+        >
+          <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 px-4 sm:px-6 md:gap-8 lg:px-8">
 
-    {/* Heading */}
-    <MotionReveal>
-      <h2 className="mb-3 text-headline-lg ui-heading">
-        Disclaimer &amp; Emergency Helplines
-      </h2>
-    </MotionReveal>
+            <MotionReveal>
+              <h2 className="mb-3 text-headline-lg ui-heading">
+                Disclaimer &amp; Emergency Helplines
+              </h2>
+            </MotionReveal>
 
-    {/* Description + Helplines */}
-    <div className="min-w-0 space-y-6 break-words text-body-md leading-relaxed text-[#176c78]">
+            <div className="min-w-0 space-y-6 break-words text-body-md leading-relaxed text-[#176c78]">
 
-      <p>
-        <strong>Important:</strong> The services offered through
-        Mind And Soul Klinic are not suitable for crisis situations or mental
-        health emergencies.
-      </p>
-
-      <p>
-        If you are experiencing emotional distress or are in an
-        emergency, please seek immediate support from a nearby mental
-        health center or contact a professional helpline.
-      </p>
-
-      <p>
-        Here are some trusted resources you can reach out to:
-      </p>
-
-      <ul className="space-y-6 pl-6 marker:text-[#00646a]">
-        {emergencyHelplines.map((helpline) => (
-          <li key={helpline.name} className="min-w-0 pl-1">
-
-            <p className="font-medium">
-              {helpline.name}
-            </p>
-
-            <p className="break-words">
-              <span aria-hidden="true">📞 </span>
-
-              {helpline.phones ? (
-                helpline.phones.map((phone, index) => (
-                  <span key={phone}>
-                    {index > 0 ? " | " : ""}
-                    <a
-                      className="underline"
-                      href={`tel:${phone.replace(/\s/g, "")}`}
-                    >
-                      {phone}
-                    </a>
-                  </span>
-                ))
-              ) : (
-                <a
-                  className="underline"
-                  href={`tel:${helpline.phone?.replace(/\s/g, "")}`}
-                >
-                  {helpline.phone}
-                </a>
-              )}
-
-              {" "}({helpline.hours})
-            </p>
-
-            {helpline.whatsapp && (
               <p>
-                <span aria-hidden="true">💬 </span>
-                <a
-                  className="underline"
-                  href={`https://wa.me/${helpline.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  WhatsApp (24/7)
-                </a>
+                <strong>Important:</strong> The services offered through
+                Mind And Soul Klinic are not suitable for crisis situations or mental
+                health emergencies.
               </p>
-            )}
 
-            <p className="break-all sm:break-words">
-              <span aria-hidden="true">🌐 </span>
-              <a
-                className="underline"
-                href={helpline.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {helpline.website
-                  .replace(/^https:\/\//, "")
-                  .replace(/\/$/, "")}
-              </a>
-            </p>
+              <p>
+                If you are experiencing emotional distress or are in an
+                emergency, please seek immediate support from a nearby mental
+                health center or contact a professional helpline.
+              </p>
 
-          </li>
-        ))}
-      </ul>
+              <p>
+                Here are some trusted resources you can reach out to:
+              </p>
 
-      <p>
-        Please take care of yourself and reach out for immediate help
-        if needed. You are not alone, and support is available.
-      </p>
+              <ul className="space-y-6 pl-6 marker:text-[#00646a]">
+                {emergencyHelplines.map((helpline) => (
+                  <li key={helpline.name} className="min-w-0 pl-1">
 
-    </div>
-  </div>
-</MotionSection>
+                    <p className="font-medium">
+                      {helpline.name}
+                    </p>
+
+                    <p className="break-words">
+                      <span aria-hidden="true">📞 </span>
+
+                      {helpline.phones ? (
+                        helpline.phones.map((phone, index) => (
+                          <span key={phone}>
+                            {index > 0 ? " | " : ""}
+                            <a
+                              className="underline"
+                              href={`tel:${phone.replace(/\s/g, "")}`}
+                            >
+                              {phone}
+                            </a>
+                          </span>
+                        ))
+                      ) : (
+                        <a
+                          className="underline"
+                          href={`tel:${helpline.phone?.replace(/\s/g, "")}`}
+                        >
+                          {helpline.phone}
+                        </a>
+                      )}
+
+                      {" "}({helpline.hours})
+                    </p>
+
+                    {helpline.whatsapp && (
+                      <p>
+                        <span aria-hidden="true">💬 </span>
+                        <a
+                          className="underline"
+                          href={`https://wa.me/${helpline.whatsapp}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          WhatsApp (24/7)
+                        </a>
+                      </p>
+                    )}
+
+                    <p className="break-all sm:break-words">
+                      <span aria-hidden="true">🌐 </span>
+                      <a
+                        className="underline"
+                        href={helpline.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {helpline.website
+                          .replace(/^https:\/\//, "")
+                          .replace(/\/$/, "")}
+                      </a>
+                    </p>
+
+                  </li>
+                ))}
+              </ul>
+
+              <p>
+                Please take care of yourself and reach out for immediate help
+                if needed. You are not alone, and support is available.
+              </p>
+
+            </div>
+          </div>
+        </MotionSection> */}
       </main>
-
-      {/* Watermark */}
-      <div className="page-watermark" aria-hidden="true">
-        <Image
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTaG1PgzOhgrkF3uAHlyXW1-I5bvkvk7MQIuwTj9leoJ1AL2Cf7EARRgK784WdoEoHRCsNmwVe6drb1Lt-1BjFChyVgUC2GvcMCuq8hohqdUGgZnxaiYtPXNK024rKWbV__I5KC-MtSTBzlkT3BdexnIcX7gK3N7Y_HUkRfeT5cpl7KNUiAG36xdNrImLdblbEk0G-PQuPet7s4TrTxek2S0gATyNt88GND5yktmzFzjzoqznz3-Vjv0EktiCpabIIig"
-          alt=""
-          width={1600}
-          height={900}
-        />
-      </div>
     </>
   );
 }

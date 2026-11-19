@@ -1,13 +1,32 @@
 import Link from "next/link";
-import Image from "next/image";
 import { formatDate, stripHtml } from "@/utils/safe";
+import { HoverZoomContainer, HoverZoomImage } from "@/components/ui/Motion";
 
-export default function BlogCard({ blog }: { blog: any }) {
+type BlogCardProps = {
+  blog: {
+    _id?: string;
+    slug: string;
+    image?: { url: string };
+    category?: string;
+    publishedAt?: string | Date;
+    title: string;
+    excerpt?: string;
+    content?: string;
+  };
+};
+
+export default function BlogCard({ blog }: BlogCardProps) {
   return (
     <article className="card card-hover flex h-full flex-col !p-0 overflow-hidden">
       {blog.image?.url && (
         <Link href={`/blog/${blog.slug}`} className="relative block aspect-[16/10]" tabIndex={-1} aria-hidden>
-          <Image src={blog.image.url} alt="" fill sizes="(min-width:1024px) 380px, 100vw" className="object-cover" />
+          <HoverZoomContainer className="h-full w-full">
+            <HoverZoomImage
+              src={blog.image.url}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </HoverZoomContainer>
         </Link>
       )}
       <div className="flex flex-1 flex-col p-6">

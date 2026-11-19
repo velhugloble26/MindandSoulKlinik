@@ -93,7 +93,7 @@ export default function CorporateWellbeingPage() {
             direction="left"
             className="flex-1 w-full relative"
           >
-            <div className="aspect-[4/3] rounded-lg overflow-hidden surface-sand group">
+            <div className="aspect-[4/5] rounded-lg overflow-hidden surface-sand group">
               <Image
                 src={CORPORATE_IMG}
                 alt="A serene, modern office environment with soft natural light."

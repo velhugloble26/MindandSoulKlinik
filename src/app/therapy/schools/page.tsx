@@ -120,8 +120,7 @@ export default function SchoolsPage() {
             {programmes.map((prog) => (
               <MotionItem key={prog.title}>
                 <div
-                  className="group relative overflow-hidden rounded-xl h-full transition-transform duration-500 hover:shadow-lg hover:-translate-y-1 block"
-                  style={{ aspectRatio: "3/4" }}
+                  className="media-frame group relative overflow-hidden rounded-xl transition-transform duration-500 hover:shadow-lg hover:-translate-y-1 block"
                 >
                   <Image
                     src={prog.img}

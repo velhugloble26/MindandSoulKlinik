@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { slideVariants } from "./variants";
 
 type Props = {
@@ -9,6 +9,8 @@ type Props = {
   direction?: "left" | "right" | "up" | "fade";
   className?: string;
   delay?: number;
+  id?: string;
+  style?: CSSProperties;
 };
 
 /**
@@ -16,14 +18,16 @@ type Props = {
  * right into place; direction="right" enters from the right and slides left.
  * Place one of each side by side so both animate at the same time.
  */
-export default function Reveal({ children, direction = "up", className, delay = 0 }: Props) {
+export default function Reveal({ children, direction = "up", className, delay = 0, id, style }: Props) {
   const reduce = useReducedMotion();
   const variants = slideVariants()[direction];
 
-  if (reduce) return <div className={className}>{children}</div>;
+  if (reduce) return <div id={id} style={style} className={className}>{children}</div>;
 
   return (
     <motion.div
+      id={id}
+      style={style}
       className={className}
       variants={variants}
       initial="hidden"

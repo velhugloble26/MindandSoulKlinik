@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/animations/Reveal";
+import { HoverZoomContainer, HoverZoomImage } from "@/components/ui/Motion";
 
 const faqs = [
   {
@@ -49,15 +49,15 @@ export default function FrequentlyAskedQuestions() {
         {/* LEFT SIDE - IMAGE */}
 
         <Reveal direction="left">
-          <div className="media-frame">
-            <Image
+          <HoverZoomContainer className="media-frame">
+            <HoverZoomImage
               src="/faq.jpeg"
               alt="Frequently asked questions at Mind and Soul Klinic"
               width={800}
               height={900}
               className="w-full h-full object-cover"
             />
-          </div>
+          </HoverZoomContainer>
         </Reveal>
 
         {/* RIGHT SIDE - FAQ CONTENT */}

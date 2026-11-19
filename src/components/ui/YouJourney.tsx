@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/animations/Reveal";
+import { HoverZoomContainer, HoverZoomImage } from "@/components/ui/Motion";
 
 const steps = [
   {
@@ -38,15 +38,15 @@ export default function YourJourney() {
         {/* LEFT SIDE - IMAGE */}
 
         <Reveal direction="left">
-          <div className="media-frame">
-            <Image
+          <HoverZoomContainer className="media-frame">
+            <HoverZoomImage
               src="/You_Journey.jpeg"
               alt="Your journey towards healing"
               width={800}
               height={900}
               className="w-full h-full object-cover"
             />
-          </div>
+          </HoverZoomContainer>
         </Reveal>
 
         {/* RIGHT SIDE - TEXT */}
