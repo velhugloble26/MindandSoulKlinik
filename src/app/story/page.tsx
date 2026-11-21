@@ -96,79 +96,80 @@ export default function StoryPage() {
 
         {/* 01 – MY STORY / HERO */}
 
-        <Reveal className="story-hero-section">
-          <div className="story-hero-content">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card">
+              <div className="story-editorial-content">
 
-            <Reveal>
-              <h1 className="story-editorial-title">
-                "Before I became a therapist, I was always curious about people."
-              </h1>
-            </Reveal>
+                <Reveal>
+                  <h1 className="story-editorial-title">
+                    "Before I became a therapist, I was always curious about people."
+                  </h1>
+                </Reveal>
 
-            <Reveal
-              className="story-hero-copy story-editorial-copy"
-            >
-              <Reveal>
-                <p>What makes us think the way we do?</p>
-              </Reveal>
+                <Reveal className="story-editorial-copy">
+                  <Reveal>
+                    <p>What makes us think the way we do?</p>
+                  </Reveal>
 
-              <Reveal>
-                <p>
-                  Why do some experiences stay with us long after they have passed?
-                </p>
-              </Reveal>
+                  <Reveal>
+                    <p>
+                      Why do some experiences stay with us long after they have passed?
+                    </p>
+                  </Reveal>
 
-              <Reveal>
-                <p>
-                  Why do we sometimes repeat patterns we consciously want to change?
-                </p>
-              </Reveal>
+                  <Reveal>
+                    <p>
+                      Why do we sometimes repeat patterns we consciously want to change?
+                    </p>
+                  </Reveal>
 
-              <Reveal>
-                <p>
-                  And why can two people experience the same situation so differently?
-                </p>
-              </Reveal>
+                  <Reveal>
+                    <p>
+                      And why can two people experience the same situation so differently?
+                    </p>
+                  </Reveal>
 
-              <Reveal>
-                <p className="pt-2">
-                  My curiosity about human behaviour gradually became more than
-                  an interest. It became a journey towards understanding
-                  people, their emotions, experiences and the patterns that
-                  shape their lives.
-                </p>
-              </Reveal>
-            </Reveal>
+                  <Reveal>
+                    <p>
+                      My curiosity about human behaviour gradually became more
+                      than an interest. It became a journey towards understanding
+                      people, their emotions, experiences and the patterns that
+                      shape their lives.
+                    </p>
+                  </Reveal>
+                </Reveal>
 
-            <Reveal delay={0.55}>
-              <div className="story-hero-actions">
-                <Link href="/conversation" className="btn btn-primary">
-                  Begin a Conversation
-                </Link>
+                <Reveal delay={0.55}>
+                  <div className="story-hero-actions">
+                    <Link href="/conversation" className="btn btn-primary">
+                      Begin a Conversation
+                    </Link>
 
-                <Link href="/book-session" className="btn btn-primary">
-                  Book a Session
-                </Link>
+                    <Link href="/book-session" className="btn btn-primary">
+                      Book a Session
+                    </Link>
+                  </div>
+                </Reveal>
+
               </div>
-            </Reveal>
 
+              <Reveal
+                delay={0.55}
+                direction="left"
+                className="story-editorial-image-column"
+              >
+                <HoverZoomContainer className="story-editorial-media">
+                  <HoverZoomImage
+                    src={KIRAN_STORY_IMG}
+                    alt="Kiran Khullar, therapist at Mind And Soul Klinic"
+                    baseScale={1}
+                    className="h-full w-full object-cover"
+                  />
+                </HoverZoomContainer>
+              </Reveal>
+            </div>
           </div>
-
-          <div className="story-hero-visual">
-            <Reveal
-              delay={0.55}
-              direction="left"
-              className="story-hero-image-frame"
-            >
-              <HoverZoomImage
-                src={KIRAN_STORY_IMG}
-                alt="Kiran Khullar, therapist at Mind And Soul Klinic"
-                baseScale={1}
-                className="story-hero-image h-full w-full object-cover"
-              />
-            </Reveal>
-          </div>
-
         </Reveal>
 
 

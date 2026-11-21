@@ -340,25 +340,25 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
 
-      <main className="design-system-page min-h-screen w-full px-margin-mobile py-section md:px-8">
+      <main className="design-system-page story-editorial-section min-h-screen w-full px-margin-mobile py-section md:px-8">
         <div className="mx-auto w-full max-w-375">
-          <header className="mx-auto mb-14 max-w-3xl border-b border-black/[0.08] pb-10 text-center">
-            <span className="text-label-lg mb-4 inline-block rounded-full border border-black/[0.08] bg-black/[0.02] px-4 py-1.5 uppercase tracking-widest ui-muted">
-              Mind And Soul Klinic — Because everyone needs to be understood.
-            </span>
+          <header className="story-editorial-content mb-10 rounded-xl border border-[#d5eae5] bg-[#eaf7f4]">
+              <span className="text-label-lg uppercase tracking-widest ui-muted">
+                Mind And Soul Klinic — Because everyone needs to be understood.
+              </span>
 
-            <h1 className="text-headline-lg mt-2 ui-heading">Privacy Policy</h1>
+              <h1 className="story-editorial-title">Privacy Policy</h1>
 
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-black/[0.03] px-3.5 py-1 text-xs font-medium ui-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
-              <span>Effective Date: October 25, 2026</span>
-            </div>
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#d5eae5] bg-white/60 px-3.5 py-1 text-xs font-medium ui-muted">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+                <span>Effective Date: October 25, 2026</span>
+              </div>
 
-            <p className="mx-auto mt-6 max-w-2xl text-body-lg leading-relaxed ui-copy">
-              Your privacy matters. This policy explains what information we
-              collect when you use Mind And Soul Klinic&apos;s website and
-              services, and how we use and protect it.
-            </p>
+              <p className="max-w-2xl">
+                Your privacy matters. This policy explains what information we
+                collect when you use Mind And Soul Klinic&apos;s website and
+                services, and how we use and protect it.
+              </p>
           </header>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[240px_1fr] lg:items-start">
@@ -372,10 +372,10 @@ export default function PrivacyPolicyPage() {
                 <section
                   key={id}
                   id={id}
-                  className="scroll-mt-28 rounded-2xl border border-black/[0.07] bg-white/70 p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-colors hover:border-black/[0.12] sm:p-8"
+                  className="scroll-mt-28 rounded-xl border border-[#d5eae5] bg-[#eaf7f4] p-6 transition-colors hover:border-[#a9c9c7] sm:p-8"
                 >
-                  <div className="mb-4 flex items-center gap-3 border-b border-black/[0.05] pb-3.5">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.04] font-mono text-xs font-semibold ui-heading">
+                  <div className="mb-4 flex items-center gap-3 border-b border-[#c9dfdb] pb-3.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/70 font-mono text-xs font-semibold ui-heading">
                       {number}
                     </span>
                     <h2 className="text-headline-md ui-heading">
