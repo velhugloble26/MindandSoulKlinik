@@ -33,18 +33,18 @@ const approaches = [
 
 export default function OurApproach() {
   return (
-    <section className="section pt-40 approach-intro" id="our-approach">
-      <div className="container-site split">
+    <section className="section-pad py-section story-editorial-section approach-intro" id="our-approach">
+      <div className="max-w-375 mx-auto w-full">
+        <div className="story-editorial-card">
 
         {/* LEFT SIDE - TEXT */}
 
-        <Reveal direction="left">
-          <div>
-            <h2 className="heading-lg">
+        <Reveal direction="left" className="story-editorial-content story-editorial-copy">
+            <h2 className="story-editorial-title">
               Understanding the Person Behind the Problem.
             </h2>
 
-            <p className="text-body mt-5">
+            <p>
               At Mind and Soul Klinic, we believe that meaningful
               change begins with understanding. We look beyond
               immediate concerns to explore emotional experiences,
@@ -54,18 +54,18 @@ export default function OurApproach() {
             <div className="mt-7 space-y-6">
               {approaches.map((approach) => (
                 <div key={approach.title}>
-                  <h3 className="heading-md">
+                  <h3 className="heading-md ui-heading">
                     {approach.title}
                   </h3>
 
-                  <p className="text-body mt-2">
+                  <p className="mt-2">
                     {approach.description}
                   </p>
                 </div>
               ))}
             </div>
 
-            <p className="text-body mt-7">
+            <p>
               Every individual is unique. The therapeutic approach
               is selected according to the person&apos;s concerns,
               needs and suitability, ensuring personalised
@@ -74,17 +74,16 @@ export default function OurApproach() {
 
             <Link
               href="/therapy"
-              className="btn btn-outline mt-7"
+              className="btn btn-outline mt-2"
             >
               Explore Our Therapy Approach
             </Link>
-          </div>
         </Reveal>
 
         {/* RIGHT SIDE - IMAGE */}
 
-        <Reveal direction="right">
-          <HoverZoomContainer className="media-frame">
+        <Reveal direction="right" className="story-editorial-image-column">
+          <HoverZoomContainer className="story-editorial-media">
             <HoverZoomImage
               src="/our-approach.jpeg"
               alt="Our therapeutic approach at Mind and Soul Klinic"
@@ -95,6 +94,7 @@ export default function OurApproach() {
           </HoverZoomContainer>
         </Reveal>
 
+        </div>
       </div>
     </section>
   );

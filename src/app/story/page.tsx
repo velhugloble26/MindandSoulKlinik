@@ -9,7 +9,7 @@ import {
   HoverZoomImage,
 } from "@/components/ui/Motion";
 
-const NIDHI_STORY_IMG = "/kiran_khullar.avif";
+const KIRAN_STORY_IMG = "https://images.openai.com/static-rsc-4/lIAAoGrkw4V8F3o2isuI-CghOzPRd6MaYRV-PUdSw_jrb3HAB-TLvqOqiBvFb0rDafrD_UfBeyl9d_Cx94TtZt0fM_WkABzH0zON9Q_u2nRYzgM4ytH7S0rrLCTOVMs2YRRfQZQ2iw9e_xhM5X8MxptR8z0XFIEaM5I93L-bFzAUUM42YNt1poqR8MuP1zGG?purpose=fullsize";
 
 // EXISTING IMAGES – UNCHANGED
 const understanding_people =
@@ -96,18 +96,17 @@ export default function StoryPage() {
 
         {/* 01 – MY STORY / HERO */}
 
-        <Reveal className="story-hero-section section-pad max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center gap-6 lg:gap-16 py-section-hero">
-
-          <div className="w-full lg:w-1/2 flex flex-col items-start">
+        <Reveal className="story-hero-section">
+          <div className="story-hero-content">
 
             <Reveal>
-              <h1 className="text-headline-lg home-intro-title ui-heading">
+              <h1 className="story-editorial-title">
                 "Before I became a therapist, I was always curious about people."
               </h1>
             </Reveal>
 
             <Reveal
-              className="story-hero-copy max-w-lg text-body-lg ui-copy"
+              className="story-hero-copy story-editorial-copy"
             >
               <Reveal>
                 <p>What makes us think the way we do?</p>
@@ -142,7 +141,7 @@ export default function StoryPage() {
             </Reveal>
 
             <Reveal delay={0.55}>
-              <div className="flex flex-wrap justify-center mt-6 gap-4 lg:justify-start">
+              <div className="story-hero-actions">
                 <Link href="/conversation" className="btn btn-primary">
                   Begin a Conversation
                 </Link>
@@ -155,24 +154,14 @@ export default function StoryPage() {
 
           </div>
 
-          <div className="w-full lg:w-1/2">
+          <div className="story-hero-visual">
             <Reveal
               delay={0.55}
               direction="left"
-              className="story-hero-image-frame media-frame w-full rounded overflow-hidden relative group surface-sand"
+              className="story-hero-image-frame"
             >
-              <div
-                className="pointer-events-none absolute inset-0 z-10"
-                style={{
-                  background:
-                    "linear-gradient(to top, color-mix(in srgb, var(--color-primary) 20%, transparent) 0%, transparent 60%)",
-                  mixBlendMode: "multiply",
-                  opacity: 0.5,
-                }}
-              />
-
               <HoverZoomImage
-                src={NIDHI_STORY_IMG}
+                src={KIRAN_STORY_IMG}
                 alt="Kiran Khullar, therapist at Mind And Soul Klinic"
                 baseScale={1}
                 className="story-hero-image h-full w-full object-cover"
@@ -185,37 +174,18 @@ export default function StoryPage() {
 
         {/* 02 – UNDERSTANDING PEOPLE */}
 
-        <Reveal className="section-pad py-section surface-sand">
-          <div className="max-w-[1500px] mx-auto w-full">
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20">
-
-              <Reveal
-                delay={0.2}
-                direction="left"
-                className="flex justify-center lg:justify-start order-2 lg:order-1"
-              >
-                <HoverZoomContainer className="media-frame w-full max-w-[600px] overflow-hidden rounded-3xl">
-                  <HoverZoomImage
-                    src={understanding_people}
-                    alt="Understanding people and their stories"
-                    className="h-full w-full object-cover"
-                    baseScale={1.05}
-                  />
-                </HoverZoomContainer>
-              </Reveal>
-
-              <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-1 lg:order-2">
+        <Reveal className="section-pad py-section story-understanding-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-understanding-card">
+              <div className="story-understanding-content">
 
                 <Reveal>
-                  <h2 className="text-headline-lg home-intro-title ui-heading">
+                  <h2 className="story-understanding-title">
                     I believe people are rarely as simple as their problems make them appear.
                   </h2>
                 </Reveal>
 
-                <Reveal
-                  className="text-body-md space-y-6 w-full ui-copy"
-                >
+                <Reveal className="story-understanding-copy">
                   <Reveal>
                     <p>
                       Over the years, I have come to understand that people
@@ -244,11 +214,7 @@ export default function StoryPage() {
 
                   <Reveal>
                     <blockquote
-                      className="text-quote-intense italic pt-4 pb-2 pl-6 ml-2 my-4"
-                      style={{
-                        color: "var(--color-primary)",
-                        borderLeft: "1px solid var(--color-stone-grey)",
-                      }}
+                      className="story-understanding-quote italic"
                     >
                       I began seeing therapy not as a process of fixing what
                       was wrong, but as a process of understanding what was
@@ -256,8 +222,22 @@ export default function StoryPage() {
                     </blockquote>
                   </Reveal>
                 </Reveal>
-
               </div>
+
+              <Reveal
+                delay={0.2}
+                direction="left"
+                className="story-understanding-image-column"
+              >
+                <HoverZoomContainer className="story-understanding-media">
+                  <HoverZoomImage
+                    src={understanding_people}
+                    alt="Understanding people and their stories"
+                    className="h-full w-full object-cover"
+                    baseScale={1}
+                  />
+                </HoverZoomContainer>
+              </Reveal>
             </div>
           </div>
         </Reveal>
@@ -265,40 +245,18 @@ export default function StoryPage() {
 
         {/* 03 – EMPATHY AND UNDERSTANDING */}
 
-        <Reveal className="section-pad py-section flex items-center justify-center relative overflow-hidden surface-ivory">
-
-          <div
-            className="absolute top-0 right-0 h-full rounded-l-full blur-3xl -z-10"
-            style={{
-              width: "50%",
-              opacity: 0.5,
-              backgroundColor: "var(--color-surface-container)",
-              transform: "translateX(25%)",
-            }}
-          />
-
-          <div className="max-w-[1500px] mx-auto w-full">
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20">
-
-              <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card story-editorial-card--image-left">
+              <div className="story-editorial-content">
 
                 <Reveal>
-                  <h2 className="text-headline-lg home-intro-title ui-heading">
+                  <h2 className="story-editorial-title">
                     Everyone deserves to be understood.
-                    <span
-                      className="absolute left-1/2 lg:left-0 lg:translate-x-0 -translate-x-1/2 w-12 h-px"
-                      style={{
-                        bottom: "-1.5rem",
-                        backgroundColor: "var(--color-soft-teal)",
-                      }}
-                    />
                   </h2>
                 </Reveal>
 
-                <Reveal
-                  className="text-body-lg space-y-4 ui-copy max-w-[700px]"
-                >
+                <Reveal className="story-editorial-copy">
                   <Reveal>
                     <p>
                       Not just heard. Not simply advised. Not immediately
@@ -336,9 +294,9 @@ export default function StoryPage() {
               <Reveal
                 delay={0.3}
                 direction="right"
-                className="flex justify-center lg:justify-end"
+                className="story-editorial-image-column"
               >
-                <HoverZoomContainer className="media-frame w-full max-w-[550px] overflow-hidden rounded-3xl border border-gray-200">
+                <HoverZoomContainer className="story-editorial-media">
                   <HoverZoomImage
                     src={everyone_deserves}
                     alt="Everyone deserves to be understood"
@@ -355,23 +313,16 @@ export default function StoryPage() {
 
         {/* 04 – MY THERAPEUTIC PHILOSOPHY */}
 
-        <Reveal className="section-pad py-section surface-container">
-
-          <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-16 items-center">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card">
 
             <Reveal
               direction="right"
-              className="col-span-1 md:col-span-5 order-2 md:order-1"
+              className="story-editorial-image-column"
             >
-              <div
-                className="media-frame relative w-full overflow-hidden rounded-xl border"
-                style={{
-                  backgroundColor: "var(--color-warm-ivory)",
-                  borderColor:
-                    "color-mix(in srgb, var(--color-stone-grey) 20%, transparent)",
-                }}
-              >
-                <HoverZoomContainer className="absolute inset-0 h-full w-full overflow-hidden rounded-xl">
+              <div className="story-editorial-media">
+                <HoverZoomContainer className="absolute inset-0 h-full w-full overflow-hidden">
                   <HoverZoomImage
                     src={therapy_should_fit_person}
                     alt="Therapy should fit the person"
@@ -379,29 +330,22 @@ export default function StoryPage() {
                     baseScale={1.05}
                   />
 
-                  <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.35))",
-                    }}
-                  />
                 </HoverZoomContainer>
               </div>
             </Reveal>
 
             <Reveal
-              className="col-span-1 md:col-span-6 md:col-start-7 order-1 md:order-2 space-y-6"
+              className="story-editorial-content story-editorial-copy"
             >
 
               <Reveal>
-                <h2 className="text-headline-lg max-w-2xl ui-heading">
+                <h2 className="story-editorial-title">
                   I don't believe there is a single formula for a human being.
                 </h2>
               </Reveal>
 
               <Reveal>
-                <p className="text-body-md ui-copy">
+                <p>
                   Every person who enters therapy brings a different history,
                   personality, relationships and way of making sense of life.
                   What works for one individual may not necessarily work for
@@ -410,7 +354,7 @@ export default function StoryPage() {
               </Reveal>
 
               <Reveal>
-                <p className="text-body-md ui-copy">
+                <p>
                   My approach is individualised and draws upon appropriate
                   psychological and therapeutic methods according to the
                   person's concerns, needs and goals.
@@ -418,7 +362,7 @@ export default function StoryPage() {
               </Reveal>
 
               <Reveal>
-                <p className="text-body-md ui-copy">
+                <p>
                   Our work may involve exploring thoughts, emotions,
                   behavioural responses, relationships, beliefs and past
                   experiences, depending on what brings someone to therapy.
@@ -426,7 +370,7 @@ export default function StoryPage() {
               </Reveal>
 
               <Reveal>
-                <p className="text-body-md font-medium ui-heading">
+                <p className="font-medium ui-heading">
                   But the approach always begins with the person, not the
                   technique.
                 </p>
@@ -434,113 +378,26 @@ export default function StoryPage() {
 
             </Reveal>
 
+            </div>
           </div>
         </Reveal>
-
-
-
-        {/* 06 – PROFESSIONAL EXPERTISE */}
-
-        {/* <Reveal
-          className="section-pad py-section border-t"
-          style={{
-            backgroundColor: "var(--color-surface-container-low)",
-            borderColor: "var(--color-surface-dim)",
-          }}
-        >
-
-          <div className="max-w-[800px] mx-auto">
-
-            <div className="mb-10 text-center">
-
-              <Reveal>
-                <h2 className="text-headline-lg mb-4 ui-heading">
-                  Professional expertise, grounded in human connection.
-                </h2>
-              </Reveal>
-
-              <p className="text-body-md ui-copy">
-                Kiran Khullar — Counselling Psychologist |
-                Cognitive Hypnotic Psychotherapist |
-                NLP Practitioner | Life Coach
-              </p>
-
-            </div>
-
-            <Reveal delay={0.5} className="space-y-4">
-
-              {qualifications.map((q) => (
-                <div
-                  key={q.label}
-                  className="flex flex-col sm:flex-row sm:items-baseline py-4 border-b border-dim"
-                >
-
-                  <span className="w-full sm:w-1/3 text-label-md mb-2 sm:mb-0 ui-muted">
-                    {q.label}
-                  </span>
-
-                  {q.tags ? (
-                    <div className="w-full sm:w-2/3 flex flex-wrap gap-2">
-
-                      {q.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 rounded-full border"
-                          style={{
-                            backgroundColor: "var(--color-surface)",
-                            borderColor: "var(--color-surface-dim)",
-                            color: "var(--color-on-surface-variant)",
-                            fontSize: "var(--text-xs)",
-                            fontFamily: "var(--font-label-md)",
-                          }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-
-                    </div>
-                  ) : (
-                    <span className="w-full sm:w-2/3 text-body-md ui-heading">
-                      {q.value}
-                    </span>
-                  )}
-
-                </div>
-              ))}
-
-            </Reveal>
-
-          </div>
-        </Reveal> */}
-
+        
 
         {/* 07 – CLOSING CTA */}
 
-        <Reveal
-          className="section-pad py-section relative overflow-hidden"
-          style={{
-            background: `linear-gradient(
-              180deg,
-              var(--color-warm-ivory) 0%,
-              var(--color-muted-sand) 100%
-            )`,
-          }}
-        >
-
-          <div className="max-w-[1500px] mx-auto w-full">
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-20">
-
-              <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card story-editorial-card--image-left">
+              <div className="story-editorial-content">
 
                 <Reveal>
-                  <h2 className="text-headline-lg max-w-2xl mb-6 ui-heading">
+                  <h2 className="story-editorial-title">
                     You don't have to have everything figured out.
                   </h2>
                 </Reveal>
 
                 <Reveal delay={0.5}>
-                  <p className="text-body-lg max-w-3xl mb-12 ui-copy">
+                  <p>
                     A first conversation doesn't have to be a commitment to
                     a long therapeutic journey. It can simply be a beginning.
                     A chance to talk, understand what is happening and explore
@@ -549,7 +406,7 @@ export default function StoryPage() {
                 </Reveal>
 
                 <Reveal delay={0.55}>
-                  <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+                  <div className="story-hero-actions">
 
                     <Link href="/conversation" className="btn btn-primary">
                       Begin a Conversation
@@ -563,7 +420,7 @@ export default function StoryPage() {
                 </Reveal>
 
                 <Reveal delay={0.4}>
-                  <p className="text-body-md italic mt-6 ui-muted">
+                  <p className="story-editorial-note italic">
                     Whenever you're ready, we'll begin wherever you are.
                   </p>
                 </Reveal>
@@ -573,9 +430,9 @@ export default function StoryPage() {
               <Reveal
                 delay={0.3}
                 direction="right"
-                className="flex w-full justify-center lg:justify-end"
+                className="story-editorial-image-column"
               >
-                <HoverZoomContainer className="media-frame relative w-full max-w-[420px] overflow-hidden rounded-3xl">
+                <HoverZoomContainer className="story-editorial-media">
 
                   <HoverZoomImage
                     src={beginConversationImage}

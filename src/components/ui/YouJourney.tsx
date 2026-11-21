@@ -32,13 +32,14 @@ const steps = [
 
 export default function YourJourney() {
   return (
-    <section className="section pt-40 journey-intro" id="healing-journey">
-      <div className="container-site split">
+    <section className="section-pad py-section story-editorial-section journey-intro" id="healing-journey">
+      <div className="max-w-375 mx-auto w-full">
+        <div className="story-editorial-card story-editorial-card--image-left">
 
         {/* LEFT SIDE - IMAGE */}
 
-        <Reveal direction="left">
-          <HoverZoomContainer className="media-frame">
+        <Reveal direction="left" className="story-editorial-image-column">
+          <HoverZoomContainer className="story-editorial-media">
             <HoverZoomImage
               src="/You_Journey.jpeg"
               alt="Your journey towards healing"
@@ -51,13 +52,12 @@ export default function YourJourney() {
 
         {/* RIGHT SIDE - TEXT */}
 
-        <Reveal direction="right">
-          <div>
-            <h2 className="heading-lg">
+        <Reveal direction="right" className="story-editorial-content story-editorial-copy">
+            <h2 className="story-editorial-title">
               Change Begins With Understanding.
             </h2>
 
-            <p className="text-body mt-5">
+            <p>
               Every healing journey is unique. At Mind and Soul
               Klinic, we work with you through a supportive and
               personalised process that encourages understanding,
@@ -66,20 +66,17 @@ export default function YourJourney() {
 
             <div className="mt-8 space-y-7">
               {steps.map((step) => (
-                <div
-                  key={step.number}
-                  className="flex gap-5 items-start"
-                >
-                  <span className="text-2xl font-semibold">
+                <div key={step.number} className="flex gap-5 items-start">
+                  <span className="text-2xl font-semibold ui-heading">
                     {step.number}
                   </span>
 
                   <div>
-                    <h3 className="heading-md">
+                    <h3 className="heading-md ui-heading">
                       {step.title}
                     </h3>
 
-                    <p className="text-body mt-2">
+                    <p className="mt-2">
                       {step.description}
                     </p>
                   </div>
@@ -89,13 +86,13 @@ export default function YourJourney() {
 
             <Link
               href="/therapy"
-              className="btn btn-outline mt-8"
+              className="btn btn-outline mt-2"
             >
               Explore Our Therapy Approach
             </Link>
-          </div>
         </Reveal>
 
+        </div>
       </div>
     </section>
   );

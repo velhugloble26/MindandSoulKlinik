@@ -43,13 +43,14 @@ const faqs = [
 
 export default function FrequentlyAskedQuestions() {
   return (
-    <section className="section pt-40 faq-intro" id="faqs">
-      <div className="container-site split">
+    <section className="section-pad py-section story-editorial-section faq-intro" id="faqs">
+      <div className="max-w-375 mx-auto w-full">
+        <div className="story-editorial-card story-editorial-card--image-left">
 
         {/* LEFT SIDE - IMAGE */}
 
-        <Reveal direction="left">
-          <HoverZoomContainer className="media-frame">
+        <Reveal direction="left" className="story-editorial-image-column">
+          <HoverZoomContainer className="story-editorial-media">
             <HoverZoomImage
               src="/faq.jpeg"
               alt="Frequently asked questions at Mind and Soul Klinic"
@@ -62,13 +63,12 @@ export default function FrequentlyAskedQuestions() {
 
         {/* RIGHT SIDE - FAQ CONTENT */}
 
-        <Reveal direction="right">
-          <div>
-            <h2 className="heading-lg">
+        <Reveal direction="right" className="story-editorial-content story-editorial-copy">
+            <h2 className="story-editorial-title">
               Frequently Asked Questions
             </h2>
 
-            <p className="text-body mt-5">
+            <p>
               Starting therapy can bring up many questions.
               Here are some answers to help you feel more
               informed and comfortable about taking your
@@ -79,9 +79,9 @@ export default function FrequentlyAskedQuestions() {
               {faqs.map((faq, index) => (
                 <details
                   key={index}
-                  className="group border-b border-gray-200 pb-4"
+                  className="group border-b border-surface pb-4"
                 >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3 ui-heading">
                     <span className="heading-md">
                       {faq.question}
                     </span>
@@ -91,7 +91,7 @@ export default function FrequentlyAskedQuestions() {
                     </span>
                   </summary>
 
-                  <p className="text-body mt-3">
+                  <p className="mt-3">
                     {faq.answer}
                   </p>
                 </details>
@@ -99,20 +99,20 @@ export default function FrequentlyAskedQuestions() {
             </div>
 
             <div className="mt-8">
-              <p className="text-body">
+              <p>
                 Still have questions? We are here to help.
               </p>
 
               <Link
                 href="/contact"
-                className="btn btn-outline mt-5"
+                className="btn btn-outline mt-2"
               >
                 Contact Us
               </Link>
             </div>
-          </div>
         </Reveal>
 
+        </div>
       </div>
     </section>
   );

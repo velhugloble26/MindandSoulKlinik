@@ -80,9 +80,9 @@ export default async function HomePage() {
         <FrequentlyAskedQuestions />
         <Testimonials items={testimonials} />
         <LatestBlogs items={blogs} />
-        <section className="section">
+        <section className="section-pad py-section story-editorial-section">
           <div className="container-site text-center">
-            <h2 className="heading-lg">Ready to talk?</h2>
+            <h2 className="story-editorial-title">Ready to talk?</h2>
             <p className="text-body mx-auto mt-4">Call {SITE.phone} or send a message, and we will help you take the first step.</p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Link href="/book-session" className="btn btn-primary">Book an Appointment</Link>

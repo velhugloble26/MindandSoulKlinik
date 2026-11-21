@@ -43,12 +43,12 @@ const concerns = [
 
 export default function BringsYouHere() {
   return (
-    <section className="section pt-40" id="what-brings-you-here">
+    <section className="section-pad py-section story-editorial-section" id="what-brings-you-here">
       <div className="container-site">
 
         <Reveal direction="up">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="heading-lg">
+            <h2 className="story-editorial-title">
               Sometimes, You Just Need Someone Who Understands.
             </h2>
 
@@ -69,8 +69,8 @@ export default function BringsYouHere() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
           {concerns.map((concern, index) => (
             <Reveal key={concern.id} direction="up">
-              <div className="service-card h-full">
-                <h3 className="heading-md">
+              <div className="card card-assessment card-hover h-full">
+                <h3 className="heading-md ui-heading">
                   {concern.title}
                 </h3>
 

@@ -184,18 +184,19 @@ export default function TherapyPage() {
       <main className="design-system-page therapy-page">
 
         {/* HERO */}
-        <Reveal className="therapy-hero-section section-pad py-section flex items-center justify-center max-w-[1440px] mx-auto">
-          <div className="therapy-hero-grid w-full grid grid-cols-1 lg:grid-cols-2 items-stretch gap-12 lg:gap-20">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card">
 
-            <div className="flex h-full flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="story-editorial-content">
               <Reveal>
-                <h1 className="text-headline-lg max-w-3xl mb-8 ui-heading">
+                <h1 className="story-editorial-title">
                   What Is Therapy? A Journey Towards Understanding Yourself.
                 </h1>
               </Reveal>
 
               <Reveal
-                className="max-w-2xl text-body-lg space-y-6 mb-8 ui-copy"
+                className="story-editorial-copy"
               >
                 <Reveal>
                   <p>
@@ -229,7 +230,7 @@ export default function TherapyPage() {
               </Reveal>
 
               <Reveal delay={0.55}>
-                <div className="flex flex-wrap justify-center mt-6 gap-4 lg:justify-start">
+                <div className="story-hero-actions">
                   <Link href="/conversation" className="btn btn-primary">
                     Begin a Conversation
                   </Link>
@@ -243,9 +244,9 @@ export default function TherapyPage() {
             <Reveal
               delay={0.3}
               direction="right"
-              className="w-full min-w-0 h-full flex justify-center lg:justify-end"
+              className="story-editorial-image-column"
             >
-              <HoverZoomContainer className="media-frame w-full max-w-[520px] overflow-hidden rounded-3xl lg:h-full lg:aspect-auto">
+              <HoverZoomContainer className="story-editorial-media">
                 <HoverZoomImage
                   src={therapyForImage}
                   alt="Understanding therapy and emotional well-being"
@@ -253,38 +254,23 @@ export default function TherapyPage() {
                 />
               </HoverZoomContainer>
             </Reveal>
-
+            </div>
           </div>
         </Reveal>
 
 
         {/* WHAT IS THERAPY */}
-        <Reveal className="therapy-explained-section section-pad max-w-[1440px] mx-auto py-section">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-
-            <div className="lg:col-span-5 lg:order-first flex justify-center">
-              <Reveal delay={0.3} direction="left" className="w-full h-full">
-                <HoverZoomContainer className="media-frame therapy-explained-image-frame w-full overflow-hidden rounded-3xl lg:h-full lg:aspect-auto">
-                  <HoverZoomImage
-                    src={therapyExplainedImage}
-                    alt="Psychotherapy as a space for self-understanding"
-                    baseScale={1}
-                    className="w-full h-full object-cover"
-                  />
-                </HoverZoomContainer>
-              </Reveal>
-            </div>
-
-            <div className="lg:col-span-7 lg:order-last">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card story-editorial-card--image-left">
+              <div className="story-editorial-content story-editorial-copy">
               <Reveal>
-                <h2 className="text-headline-lg therapy-explained-title max-w-3xl ui-heading">
+                <h2 className="story-editorial-title">
                   What Happens During Therapy?
                 </h2>
               </Reveal>
 
-              <Reveal
-                className="therapy-explained-copy text-body-lg space-y-5 ui-copy"
-              >
+              <Reveal className="story-editorial-copy">
                 <Reveal>
                   <p>
                     Life can leave us carrying thoughts, emotions and
@@ -332,32 +318,44 @@ export default function TherapyPage() {
               </Reveal>
 
               <Reveal delay={0.4}>
-                <p className="therapy-explained-closing text-headline-md mt-8 ui-heading">
+                <p className="therapy-explained-closing font-medium ui-heading">
                   Therapy isn't about finding fault. It's about finding
                   understanding.
                 </p>
               </Reveal>
-            </div>
 
+              </div>
+              <Reveal
+                delay={0.3}
+                direction="left"
+                className="story-editorial-image-column"
+              >
+                <HoverZoomContainer className="story-editorial-media">
+                  <HoverZoomImage
+                    src={therapyExplainedImage}
+                    alt="Psychotherapy as a space for self-understanding"
+                    baseScale={1}
+                    className="w-full h-full object-cover"
+                  />
+                </HoverZoomContainer>
+              </Reveal>
+            </div>
           </div>
         </Reveal>
 
 
         {/* THERAPY IS COLLABORATIVE */}
-        <Reveal className="therapy-collaboration-section surface-sand py-section">
-          <div className="section-pad max-w-[1440px] mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-10 lg:gap-16">
-
-              <div className="text-center lg:text-left">
+        <Reveal className="section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card">
+              <div className="story-editorial-content story-editorial-copy">
                 <Reveal>
-                  <h2 className="text-headline-lg therapy-collaboration-title max-w-3xl ui-heading">
+                  <h2 className="story-editorial-title">
                     Therapy Isn't Someone Telling You How to Live.
                   </h2>
                 </Reveal>
 
-                <Reveal
-                  className="therapy-collaboration-copy text-body-lg space-y-6 ui-copy"
-                >
+                <Reveal className="story-editorial-copy">
                   <Reveal>
                     <p>
                       Therapy isn't a lecture, a list of instructions or
@@ -385,7 +383,7 @@ export default function TherapyPage() {
                 </Reveal>
 
                 <Reveal delay={0.4}>
-                  <blockquote className="therapy-collaboration-quote text-quote-intense border-l-2 pl-5 py-2 mt-8 mx-auto lg:mx-0 text-left max-w-2xl italic">
+                  <blockquote className="therapy-collaboration-quote story-editorial-note border-t pt-4 italic">
                     "You don't need someone to tell you who to be. You need
                     space to understand who you are."
                   </blockquote>
@@ -395,9 +393,9 @@ export default function TherapyPage() {
               <Reveal
                 delay={0.3}
                 direction="right"
-                className="flex h-full justify-center"
+                className="story-editorial-image-column"
               >
-                <HoverZoomContainer className="media-frame therapy-collaboration-image w-full overflow-hidden rounded-3xl lg:h-full lg:aspect-auto">
+                <HoverZoomContainer className="story-editorial-media">
                   <HoverZoomImage
                     src={therapyCollaborationImage}
                     alt="Collaborative psychotherapy and personal growth"
@@ -406,17 +404,16 @@ export default function TherapyPage() {
                   />
                 </HoverZoomContainer>
               </Reveal>
-
             </div>
           </div>
         </Reveal>
 
 
         {/* WHO CAN BENEFIT */}
-        <Reveal className="section-pad py-section max-w-[1440px] mx-auto">
+        <Reveal className="section-pad py-section story-editorial-section">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Reveal>
-              <h2 className="text-headline-lg mb-6 ui-heading">
+              <h2 className="story-editorial-title">
                 Who Can Benefit From Therapy?
               </h2>
             </Reveal>
@@ -436,7 +433,7 @@ export default function TherapyPage() {
           >
             {therapyFor.map((group) => (
               <Reveal key={group.title}>
-                <div className="p-8 rounded-xl surface-ivory h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="p-8 rounded-xl surface-sand h-full border border-surface transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
 
                   <h3
                     className="text-headline-md mb-5 pb-4 border-b ui-heading"
@@ -483,12 +480,12 @@ export default function TherapyPage() {
 
 
         {/* THERAPY JOURNEY */}
-        <Reveal className="therapy-journey-section section-pad max-w-[1440px] mx-auto border-t border-surface py-section">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 items-stretch">
-
-            <div className="lg:order-last">
+        <Reveal className="therapy-journey-section section-pad py-section story-editorial-section">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card story-editorial-card--image-left">
+            <div className="story-editorial-content story-editorial-copy">
               <Reveal>
-                <h2 className="text-headline-lg therapy-journey-title max-w-3xl ui-heading">
+                <h2 className="story-editorial-title">
                   Your Journey Towards Emotional Well-being.
                 </h2>
               </Reveal>
@@ -536,9 +533,9 @@ export default function TherapyPage() {
             <Reveal
               delay={0.3}
               direction="left"
-              className="therapy-journey-image lg:order-first w-full h-full rounded-xl overflow-hidden"
+              className="therapy-journey-image story-editorial-image-column"
             >
-              <HoverZoomContainer className="media-frame w-full rounded-xl overflow-hidden lg:h-full lg:aspect-auto">
+              <HoverZoomContainer className="story-editorial-media">
                 <HoverZoomImage
                   src={abstractHealingJourneyImage}
                   alt="The journey of self-understanding and emotional growth"
@@ -550,26 +547,27 @@ export default function TherapyPage() {
               </HoverZoomContainer>
             </Reveal>
 
-          </div>
+            </div>
 
           <Reveal delay={0.6} className="therapy-journey-closing text-center mt-12">
-            <p className="text-headline-md ui-heading">
+            <p className="story-editorial-title">
               The goal isn't to become someone else. It is to become more
               fully yourself.
             </p>
           </Reveal>
+          </div>
         </Reveal>
 
 
         {/* FAQ */}
-        <Reveal className="section-pad py-section max-w-[1440px] mx-auto surface-lowest">
+        <Reveal className="section-pad py-section story-editorial-section">
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
             {/* Left Content */}
             <div className="lg:sticky lg:top-28">
               <Reveal>
-                <h2 className="text-headline-lg max-w-2xl mb-6 ui-heading">
+                <h2 className="story-editorial-title">
                   Frequently Asked Questions About Therapy.
                 </h2>
               </Reveal>
@@ -624,19 +622,19 @@ export default function TherapyPage() {
         {/* FINAL CTA */}
         <Reveal
           id="contact"
-          className="section-pad py-section flex items-center justify-center max-w-[1440px] mx-auto"
+          className="section-pad py-section story-editorial-section"
         >
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-stretch gap-12 lg:gap-20">
-
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="max-w-375 mx-auto w-full">
+            <div className="story-editorial-card">
+            <div className="story-editorial-content">
               <Reveal>
-                <h2 className="text-headline-lg max-w-3xl mb-8 ui-heading">
+                <h2 className="story-editorial-title">
                   You Don't Need to Know Exactly What You Need.
                 </h2>
               </Reveal>
 
               <Reveal
-                className="max-w-xl text-body-lg space-y-6 mb-8 ui-copy"
+                className="story-editorial-copy"
               >
                 <Reveal>
                   <p>
@@ -661,9 +659,9 @@ export default function TherapyPage() {
 
               <Reveal
                 delay={0.4}
-                className="flex flex-col items-center lg:items-start gap-6"
+                className="flex flex-col gap-6"
               >
-                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <div className="story-hero-actions">
                   <Link href="/conversation" className="btn btn-primary">
                     Begin a Conversation
                   </Link>
@@ -673,7 +671,7 @@ export default function TherapyPage() {
                   </Link>
                 </div>
 
-                <span className="text-body-md italic ui-muted">
+                <span className="story-editorial-note italic">
                   Whenever you're ready, we'll begin wherever you are.
                 </span>
               </Reveal>
@@ -682,9 +680,9 @@ export default function TherapyPage() {
             <Reveal
               delay={0.3}
               direction="right"
-              className="flex h-full justify-center lg:justify-end"
+              className="story-editorial-image-column"
             >
-              <HoverZoomContainer className="media-frame w-full max-w-md rounded-3xl overflow-hidden lg:h-full lg:aspect-auto">
+              <HoverZoomContainer className="story-editorial-media">
                 <HoverZoomImage
                   src={beginConversationImage}
                   alt="Begin your therapy journey with Mind and Soul Klinic"
@@ -693,6 +691,7 @@ export default function TherapyPage() {
               </HoverZoomContainer>
             </Reveal>
 
+            </div>
           </div>
         </Reveal>
 
