@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import connectDB from "./src/config/dbconnection.js";
 import { Blog, UserRoles, Users } from "./src/schema/schema.js";
-import { blogSeedData } from "./src/data/blogSeedData.js";
+import { blogSeedDataSEO as blogSeedData } from "./src/data/blogSeedData.js";
 import { ensureDefaultAccessControl } from "./src/services/accessControlServices.js";
 
 const BCRYPT_ROUNDS = 12;

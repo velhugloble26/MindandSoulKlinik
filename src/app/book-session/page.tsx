@@ -26,10 +26,13 @@ import {
   FileText,
   CreditCard,
   ShieldCheck,
+  ArrowRight,
+  Check,
+  Globe,
+  CheckCircle2,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import { MotionReveal } from "@/components/ui/Motion";
-import { MotionSection } from "@/components/ui/Motion";
+import { MotionReveal, MotionSection } from "@/components/ui/Motion";
 import { THERAPY_CONTENT } from "@/constants/therapyContent";
 
 const steps = [
@@ -275,8 +278,6 @@ const iconMap: Record<string, React.ElementType> = {
   "consultation-call-15-minute": PhoneCall,
 };
 
-
-
 const initialBooking = {
   packageId: "",
   selectedDate: "",
@@ -325,6 +326,7 @@ const therapyGoalOptions = [
 
 export default function BookSessionPage() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>("all");
   const [dates, setDates] = useState<AvailabilityDate[]>([]);
   const [activeDate, setActiveDate] = useState("");
   const [availabilityLoading, setAvailabilityLoading] = useState(false);
@@ -346,6 +348,10 @@ export default function BookSessionPage() {
   const [customRequestId, setCustomRequestId] = useState("");
 
   const packages = indiaPackages;
+  const visiblePackages =
+    activeCategoryFilter === "all"
+      ? packages
+      : packages.filter((pkg) => pkg.id === activeCategoryFilter);
 
   const selectedPlan = (() => {
     for (const service of packages) {
@@ -366,6 +372,7 @@ export default function BookSessionPage() {
 
     return null;
   })();
+
   const selectedPackageName = selectedPlan
     ? `${selectedPlan.serviceName} · ${selectedPlan.sessionName} — ${selectedPlan.details}`
     : "Session booking";
@@ -486,7 +493,6 @@ export default function BookSessionPage() {
     }, 600);
 
     return () => window.clearTimeout(timeoutId);
-    // Re-run only when the entered email changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [booking.email]);
 
@@ -958,148 +964,228 @@ export default function BookSessionPage() {
     <>
       <Navbar />
 
-      <main className="mx-auto max-w-[1440px] px-[clamp(1rem,4vw,4rem)] py-6 md:py-10">
+      <main className="mx-auto max-w-[1680px] px-[clamp(1rem,4vw,3.5rem)] py-8 md:py-12">
         <MotionReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20">
-            {/* Left Content */}
-            <div className="mb-8 text-center lg:text-left">
-              {/* <p className="text-label-md uppercase tracking-[0.2em] ui-accent">
-      Book your session
-    </p> */}
-
-              {/* <MotionReveal delay={0.1}>
-                <span className="text-label-lg uppercase tracking-widest mb-4 block ui-muted">
-
-                  Book your session
-                </span>
-              </MotionReveal> */}
-
-              <h1 className="text-headline-lg mt-3 ui-heading">
+          {/* Editorial Header */}
+          <div className="mb-8 flex flex-col gap-4 border-b border-[#e4e1d8] pb-7 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#B89545]">
+                Mind And Soul Klinic · Appointments
+              </p>
+              <h1 className="text-headline-lg mt-2 text-[#003044] ui-heading">
                 Book a Session
               </h1>
-              <p className="mt-4 max-w-lg text-body-lg ui-copy">
+              <p className="mt-2.5 max-w-xl text-body-lg text-[#4a666a] ui-copy">
                 Choose a session type, then select a date and time that works
                 for you.
               </p>
             </div>
-
-          </div>
-
-<div className="mb-6 overflow-hidden rounded-xl border border-slate-200 bg-white/70 p-2.5 sm:p-3">
-  <div className="grid grid-cols-5">
-    {steps.map((label, index) => {
-      const isCompleted = index < currentStep;
-      const isActive = index === currentStep;
-
-      return (
-        <div
-          key={label}
-            className="flex min-w-0 flex-col items-center"
-        >
-          {/* Icon and connector to the next step */}
-          <div className="relative flex h-9 w-full items-center justify-center sm:h-10">
-            {index !== steps.length - 1 && (
-              <span
-                aria-hidden="true"
-                className={`absolute left-1/2 top-1/2 z-0 h-0.5 w-full -translate-y-1/2 ${
-                  isCompleted ? "bg-[#003044]" : "bg-slate-200"
-                }`}
-              />
-            )}
-            {/* Step Icon */}
-            <div
-              className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-200 sm:h-9 sm:w-9 ${
-                isCompleted
-                  ? "bg-[#003044] text-white"
-                  : isActive
-                    ? "bg-[#e9f2f5] text-[#003044] ring-1 ring-[#003044]"
-                    : "bg-[#f4f4f3] text-[#7b8185]"
-              }`}
-            >
-              {index === 0 && <CalendarDays size={16} />}
-              {index === 1 && <Clock size={16} />}
-              {index === 2 && <FileText size={16} />}
-              {index === 3 && <CreditCard size={16} />}
-              {index === 4 && <ShieldCheck size={16} />}
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-[#dce6e6] bg-[#f6fafa] px-3.5 py-1.5 text-xs font-medium text-[#286368] lg:self-auto">
+              <Globe size={14} className="text-[#00646a]" />
+              <span>All timings in IST ({BOOKING_TIMEZONE})</span>
             </div>
-
           </div>
 
-          {/* Step Label */}
-          <span
-            className={`mt-2 flex min-h-5 items-start justify-center text-center text-[9px] leading-tight sm:min-h-6 sm:text-xs ${
-              isActive
-                ? "font-semibold text-[#003044]"
-                : "font-medium text-[#6b7280]"
-            }`}
+          {/* Sleek Stepper */}
+          <nav
+            aria-label="Booking progress"
+            className="mb-10 rounded-2xl border border-[#e3e7e6] bg-white/90 px-3 py-4 shadow-[0_6px_24px_rgba(0,48,68,0.04)] backdrop-blur-sm sm:px-6 sm:py-5"
           >
-            {label}
-          </span>
-        </div>
-      );
-    })}
-  </div>
-</div>
+            <ol className="grid grid-cols-5">
+              {steps.map((label, index) => {
+                const isCompleted = index < currentStep;
+                const isActive = index === currentStep;
 
+                return (
+                  <li
+                    key={label}
+                    className="flex min-w-0 flex-col items-center"
+                  >
+                    <div className="relative flex h-9 w-full items-center justify-center sm:h-10">
+                      {index !== steps.length - 1 && (
+                        <span
+                          aria-hidden="true"
+                          className={`absolute left-1/2 top-1/2 z-0 h-[2px] w-full -translate-y-1/2 transition-colors duration-300 ${
+                            isCompleted ? "bg-[#00646a]" : "bg-[#e5e9e8]"
+                          }`}
+                        />
+                      )}
+                      <div
+                        className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-200 sm:h-10 sm:w-10 ${
+                          isCompleted
+                            ? "bg-[#00646a] text-white shadow-sm"
+                            : isActive
+                              ? "bg-[#eef7f6] text-[#00646a] ring-2 ring-[#00646a] ring-offset-2"
+                              : "border border-[#e2e6e5] bg-[#f8f9f8] text-[#849194]"
+                        }`}
+                      >
+                        {isCompleted ? (
+                          <Check size={16} strokeWidth={2.5} />
+                        ) : (
+                          <>
+                            {index === 0 && <CalendarDays size={16} />}
+                            {index === 1 && <Clock size={16} />}
+                            {index === 2 && <FileText size={16} />}
+                            {index === 3 && <CreditCard size={16} />}
+                            {index === 4 && <ShieldCheck size={16} />}
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    <span
+                      className={`mt-2.5 flex min-h-5 items-start justify-center text-center text-[10px] leading-tight sm:min-h-6 sm:text-xs ${
+                        isActive
+                          ? "font-bold text-[#003044]"
+                          : isCompleted
+                            ? "font-semibold text-[#00646a]"
+                            : "font-medium text-[#7b888b]"
+                      }`}
+                    >
+                      {label}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+
+          {/* STEP 0: Cardless Horizontal Service Menu */}
           {currentStep === 0 && (
-            <div className="mx-auto max-w-[1100px]">
-              {/* Services */}
-              <div className="mb-3 hidden grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_110px_118px] items-center gap-4 px-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#287c80] sm:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)_130px_140px] md:gap-6">
-                <span>Package</span>
-                <span>Details</span>
-                <span>Price</span>
-                <span>Book Now</span>
-              </div>
-              <div className="space-y-6">
+            <div className="mx-auto max-w-[1540px]">
+              {/* Subtle Category Filter Bar */}
+              <div
+                role="tablist"
+                aria-label="Filter therapy categories"
+                className="mb-8 flex flex-wrap items-center gap-2 border-b border-[#e7e4dc] pb-4"
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveCategoryFilter("all")}
+                  className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-all ${
+                    activeCategoryFilter === "all"
+                      ? "bg-[#003044] text-white shadow-xs"
+                      : "bg-[#f4f6f5] text-[#3c6266] hover:bg-[#e6efef] hover:text-[#003044]"
+                  }`}
+                >
+                  All Sessions
+                </button>
                 {packages.map((pkg) => (
+                  <button
+                    key={pkg.id}
+                    type="button"
+                    onClick={() => setActiveCategoryFilter(pkg.id)}
+                    className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-all ${
+                      activeCategoryFilter === pkg.id
+                        ? "bg-[#003044] text-white shadow-xs"
+                        : "bg-[#f4f6f5] text-[#3c6266] hover:bg-[#e6efef] hover:text-[#003044]"
+                    }`}
+                  >
+                    {pkg.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Column Header Strip */}
+              <div className="mb-2 hidden grid-cols-[minmax(0,1.1fr)_minmax(0,1.3fr)_130px_148px] items-center gap-6 px-5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#5c8689] sm:grid">
+                <span>Package</span>
+                <span>Session Details</span>
+                <span>Fee</span>
+                <span className="text-right">Action</span>
+              </div>
+
+              {/* Service Sections */}
+              <div className="space-y-10">
+                {visiblePackages.map((pkg) => (
                   <section key={pkg.id} aria-label={pkg.name}>
-<h2 className="mb-3 border-b-2 border-[#C5A253] pb-0.8 mt-6 text-lg font-extrabold uppercase tracking-[0.1em] text-[#B89545] sm:text-xl md:text-2xl">
-  {pkg.name}
-</h2>
-                    <div className="divide-y divide-[#e3ecea]">
+                    <div className="mb-1 flex items-center justify-between border-b-2 border-[#C5A253] pb-2">
+                      <h2 className="text-base font-extrabold uppercase tracking-[0.12em] text-[#B89545] sm:text-lg md:text-xl">
+                        {pkg.name}
+                      </h2>
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-[#9c8244]">
+                        {pkg.sessions.length}{" "}
+                        {pkg.sessions.length === 1 ? "Option" : "Options"}
+                      </span>
+                    </div>
+
+                    <div className="divide-y divide-[#e6eceb]">
                       {pkg.sessions.map((session) => {
                         const price = session.indiaPrice ?? 0;
-
                         const packageId = `${locationTab}-${pkg.id}-${session.id}`;
-
                         const selected = booking.packageId === packageId;
-                        const ServiceIcon = iconMap[`${pkg.id}-${session.id}`] || Sparkles;
+                        const isPopular =
+                          pkg.id === "psychologist-psychotherapist" &&
+                          session.id === "8-session";
+                        const ServiceIcon =
+                          iconMap[`${pkg.id}-${session.id}`] || Sparkles;
 
                         return (
                           <article
                             key={packageId}
-                            className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 px-4 py-6 transition-colors sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_110px_118px] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)_130px_140px] md:gap-6 md:py-8 ${
+                            className={`group relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 border-l-[3px] px-4 py-5 transition-all duration-200 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1.3fr)_130px_148px] sm:gap-6 sm:px-5 sm:py-6 ${
                               selected
-                                ? "bg-[#f5faf8]"
-                                : "bg-transparent"
+                                ? "border-l-[#00646a] bg-[#f2f9f8]"
+                                : "border-l-transparent bg-transparent hover:border-l-[#8fc2bc] hover:bg-[#f8fbfb]"
                             }`}
                           >
-                            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-                              <div className="flex h-11 w-11 shrink-0 items-center justify-center text-[#67b5a6] sm:h-12 sm:w-12">
-                                <ServiceIcon aria-hidden="true" size={34} strokeWidth={1.4} />
+                            {/* Package Name + Icon */}
+                            <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
+                              <div
+                                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors sm:h-12 sm:w-12 ${
+                                  selected
+                                    ? "bg-[#00646a] text-white"
+                                    : "bg-[#eff6f5] text-[#4c9c90] group-hover:bg-[#e1f0ee] group-hover:text-[#00646a]"
+                                }`}
+                              >
+                                <ServiceIcon
+                                  aria-hidden="true"
+                                  size={24}
+                                  strokeWidth={1.6}
+                                />
                               </div>
                               <div className="min-w-0">
-                                <h3 className="break-words text-base font-semibold leading-tight text-[#00646a] sm:text-lg">
-                                  {session.name}
-                                </h3>
-                                <p className="mt-1 text-xs text-[#287c80] sm:hidden">
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <h3 className="break-words text-base font-semibold leading-snug text-[#003c42] transition-colors group-hover:text-[#00646a] sm:text-[17px]">
+                                    {session.name}
+                                  </h3>
+                                  {isPopular && (
+                                    <span className="inline-flex items-center rounded-full border border-[#dfc584] bg-[#fbf6ea] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#9c7724]">
+                                      Most Chosen
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="mt-0.5 text-xs font-medium text-[#5c8689] sm:hidden">
                                   {pkg.name}
                                 </p>
                               </div>
                             </div>
 
-                            <div className="col-span-2 row-start-2 min-w-0 break-words text-sm leading-6 text-[#397e83] sm:col-auto sm:row-auto">
+                            {/* Details */}
+                            <div className="col-span-2 row-start-2 min-w-0 break-words text-sm leading-relaxed text-[#426e72] sm:col-auto sm:row-auto">
                               {session.details}
                             </div>
 
-                            <div className="col-start-2 row-start-1 whitespace-nowrap text-right text-sm font-medium leading-6 text-[#287c80] sm:col-auto sm:row-auto sm:text-left">
-                              ₹{price.toLocaleString("en-IN")}
+                            {/* Price */}
+                            <div className="col-start-2 row-start-1 whitespace-nowrap text-right sm:col-auto sm:row-auto sm:text-left">
+                              <span className="text-base font-bold tabular-nums text-[#003044] sm:text-[17px]">
+                                ₹{price.toLocaleString("en-IN")}
+                              </span>
+                              {session.count > 1 && (
+                                <span className="block text-[11px] font-medium text-[#648b8e]">
+                                  ₹
+                                  {Math.round(
+                                    price / session.count,
+                                  ).toLocaleString("en-IN")}{" "}
+                                  / session
+                                </span>
+                              )}
                             </div>
 
+                            {/* Book Now Button */}
                             <div className="col-start-2 row-start-3 flex justify-end sm:col-auto sm:row-auto">
                               <button
                                 type="button"
-                                className="min-w-[108px] bg-[#00646a] px-4 py-2.5 text-xs font-medium text-white transition-colors hover:bg-[#004f55] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00646a] sm:min-w-[116px]"
+                                className="inline-flex min-w-[122px] items-center justify-center gap-1.5 rounded-lg bg-[#00646a] px-4 py-2.5 text-xs font-semibold tracking-wide text-white shadow-xs transition-all duration-200 hover:bg-[#004b50] hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00646a] sm:min-w-[134px]"
                                 aria-label={`Book ${pkg.name}, ${session.name}`}
                                 onClick={() => {
                                   updateField("packageId", packageId);
@@ -1112,7 +1198,11 @@ export default function BookSessionPage() {
                                   void fetchAvailability(packageId);
                                 }}
                               >
-                                Book Now
+                                <span>Book Now</span>
+                                <ArrowRight
+                                  size={14}
+                                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                                />
                               </button>
                             </div>
                           </article>
@@ -1125,31 +1215,42 @@ export default function BookSessionPage() {
             </div>
           )}
 
+          {/* STEP 1: Date & Time */}
           {currentStep === 1 && (
             <div className="w-full max-w-none">
               {selectedPlan && (
                 <aside
-                  className="mb-4 flex flex-col gap-3 rounded-2xl border border-[#b9d3d4] bg-[#f3f9f9] px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+                  className="mb-5 flex flex-col gap-3 rounded-2xl border border-[#b9d3d4] bg-[#f3f9f9] px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
                   aria-label="Selected plan"
                 >
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                      Selected plan
-                    </p>
+                    <div className="flex items-center gap-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                        Selected plan
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setCurrentStep(0)}
+                        className="text-xs font-semibold text-[#00646a] underline underline-offset-2 hover:text-[#003044]"
+                      >
+                        Change package
+                      </button>
+                    </div>
                     <p className="mt-1 break-words font-semibold text-[#003044]">
                       {selectedPlan.serviceName} · {selectedPlan.sessionName}
                     </p>
-                    <p className="mt-1 text-sm text-slate-600">
+                    <p className="mt-0.5 text-sm text-slate-600">
                       {selectedPlan.details} · {selectedPlan.location}
                     </p>
                   </div>
-                  <p className="shrink-0 text-xl font-bold text-[#003044]">
+                  <p className="shrink-0 text-xl font-bold tabular-nums text-[#003044]">
                     ₹{selectedPlan.price.toLocaleString("en-IN")}
                   </p>
                 </aside>
               )}
+
               <section
-                className="flex min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_50px_rgba(0,48,68,0.08)] lg:h-[880px]"
+                className="flex min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_50px_rgba(0,48,68,0.06)] lg:h-[880px]"
                 aria-labelledby="schedule-heading"
               >
                 <header className="flex shrink-0 flex-col items-stretch gap-4 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-start sm:justify-between md:px-8">
@@ -1244,7 +1345,7 @@ export default function BookSessionPage() {
 
                     <div className="mb-4 flex justify-center sm:justify-end">
                       <span className="inline-flex items-center gap-2 rounded-full bg-[#f4f8f8] px-3 py-1.5 text-xs font-medium text-slate-600">
-                        <span aria-hidden="true">🌐</span>
+                        <Globe size={13} className="text-[#00646a]" />
                         {BOOKING_TIMEZONE}
                       </span>
                     </div>
@@ -1346,15 +1447,18 @@ export default function BookSessionPage() {
                         {customRequestOnly && preferredDate
                           ? formatSelectedDate(preferredDate)
                           : booking.selectedDate
-                          ? formatSelectedDate(booking.selectedDate)
-                          : "Select a date to see available times"}
+                            ? formatSelectedDate(booking.selectedDate)
+                            : "Select a date to see available times"}
                       </p>
                       <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-                        Select a Time
+                        2. Select a Time
                       </h3>
                     </div>
 
-                    <div id="available-time-slots" className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
+                    <div
+                      id="available-time-slots"
+                      className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto pr-1"
+                    >
                       {[
                         {
                           category: "online_session" as const,
@@ -1367,39 +1471,64 @@ export default function BookSessionPage() {
                           slots: offlineSlots,
                         },
                       ].map(({ category, title, slots }) => (
-                        <section key={category} className="rounded-xl border border-slate-200 bg-white p-4">
-                          <h4 className="mb-3 font-semibold text-[#003044]">{title}</h4>
+                        <section
+                          key={category}
+                          className="rounded-xl border border-slate-200 bg-white p-4"
+                        >
+                          <h4 className="mb-3 font-semibold text-[#003044]">
+                            {title}
+                          </h4>
                           <div className="grid grid-cols-2 gap-2">
-                            {slots.length ? slots.map((slot) => {
-                              const active = booking.selectedDate === activeDateData?.date &&
-                                booking.selectedTime === slot.time &&
-                                booking.sessionCategory === category;
-                              const isUnavailable = slot.status !== "available";
-                              return (
-                                <button
-                                  type="button"
-                                  key={`${activeDateData?.date}-${slot.time}`}
-                                  aria-pressed={active}
-                                  disabled={!activeDateData || isUnavailable}
-                                  aria-label={`${slot.label}${isUnavailable ? `, ${slot.status}` : ", available"}`}
-                                  onClick={() => {
-                                    if (!activeDateData) return;
-                                    setCustomRequestOnly(false);
-                                    const mode = category === "online_session" ? "Online" : "Offline";
-                                    updateField("selectedDate", activeDateData.date);
-                                    updateField("selectedTime", slot.time);
-                                    updateField("sessionCategory", category);
-                                    updateField("sessionType", mode);
-                                    updateField("sessionMode", mode);
-                                  }}
-                                  className={`rounded-lg border px-3 py-3 text-center text-sm font-semibold transition-colors disabled:cursor-not-allowed ${active ? "border-[#003044] bg-[#003044] text-white" : isUnavailable ? "border-slate-200 bg-slate-100 text-slate-400" : "border-slate-200 bg-white text-[#163d48] hover:border-[#4f898c] hover:bg-[#f3f9f9]"}`}
-                                >
-                                  {slot.label}{isUnavailable ? ` · ${slot.status}` : ""}
-                                </button>
-                              );
-                            }) : (
+                            {slots.length ? (
+                              slots.map((slot) => {
+                                const active =
+                                  booking.selectedDate ===
+                                    activeDateData?.date &&
+                                  booking.selectedTime === slot.time &&
+                                  booking.sessionCategory === category;
+                                const isUnavailable =
+                                  slot.status !== "available";
+                                return (
+                                  <button
+                                    type="button"
+                                    key={`${activeDateData?.date}-${slot.time}`}
+                                    aria-pressed={active}
+                                    disabled={!activeDateData || isUnavailable}
+                                    aria-label={`${slot.label}${isUnavailable ? `, ${slot.status}` : ", available"}`}
+                                    onClick={() => {
+                                      if (!activeDateData) return;
+                                      setCustomRequestOnly(false);
+                                      const mode =
+                                        category === "online_session"
+                                          ? "Online"
+                                          : "Offline";
+                                      updateField(
+                                        "selectedDate",
+                                        activeDateData.date,
+                                      );
+                                      updateField("selectedTime", slot.time);
+                                      updateField("sessionCategory", category);
+                                      updateField("sessionType", mode);
+                                      updateField("sessionMode", mode);
+                                    }}
+                                    className={`rounded-lg border px-3 py-3 text-center text-sm font-semibold transition-colors disabled:cursor-not-allowed ${
+                                      active
+                                        ? "border-[#003044] bg-[#003044] text-white"
+                                        : isUnavailable
+                                          ? "border-slate-200 bg-slate-100 text-slate-400"
+                                          : "border-slate-200 bg-white text-[#163d48] hover:border-[#4f898c] hover:bg-[#f3f9f9]"
+                                    }`}
+                                  >
+                                    {slot.label}
+                                    {isUnavailable ? ` · ${slot.status}` : ""}
+                                  </button>
+                                );
+                              })
+                            ) : (
                               <p className="col-span-2 rounded-lg bg-slate-50 p-3 text-center text-sm text-slate-500">
-                                {booking.selectedDate ? "No times available for this date." : "Choose a date to see availability."}
+                                {booking.selectedDate
+                                  ? "No times available for this date."
+                                  : "Choose a date to see availability."}
                               </p>
                             )}
                           </div>
@@ -1420,49 +1549,113 @@ export default function BookSessionPage() {
                       {customPreferenceEnabled && (
                         <div className="space-y-3 rounded-xl border border-[#b9d3d4] bg-[#f4f9f9] p-4">
                           <p className="text-sm font-semibold text-[#003044]">
-                            Preferred Time <span className="font-normal text-slate-500">(Optional)</span>
+                            Preferred Time{" "}
+                            <span className="font-normal text-slate-500">
+                              (Optional)
+                            </span>
                           </p>
                           <div className="grid gap-3 sm:grid-cols-2">
-                            <label className="text-sm text-slate-700" htmlFor="preferred-date">Preferred date
-                              <input id="preferred-date" type="date" min={todayKey} value={preferredDate} onChange={(event) => {
-                                const value = event.target.value;
-                                setCustomRequestId("");
-                                setPreferredDate(value);
-                                setErrors((current) => ({ ...current, preferredDate: "" }));
-                                updateField("preferredTime", [value && `Date: ${value}`, preferredTimeOfDay && `Time: ${preferredTimeOfDay} (${BOOKING_TIMEZONE})`].filter(Boolean).join(" · "));
-                              }} className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2" />
-                              {errors.preferredDate && <span className="mt-1 block text-xs text-red-600">{errors.preferredDate}</span>}
+                            <label
+                              className="text-sm text-slate-700"
+                              htmlFor="preferred-date"
+                            >
+                              Preferred date
+                              <input
+                                id="preferred-date"
+                                type="date"
+                                min={todayKey}
+                                value={preferredDate}
+                                onChange={(event) => {
+                                  const value = event.target.value;
+                                  setCustomRequestId("");
+                                  setPreferredDate(value);
+                                  setErrors((current) => ({
+                                    ...current,
+                                    preferredDate: "",
+                                  }));
+                                  updateField(
+                                    "preferredTime",
+                                    [
+                                      value && `Date: ${value}`,
+                                      preferredTimeOfDay &&
+                                        `Time: ${preferredTimeOfDay} (${BOOKING_TIMEZONE})`,
+                                    ]
+                                      .filter(Boolean)
+                                      .join(" · "),
+                                  );
+                                }}
+                                className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2"
+                              />
+                              {errors.preferredDate && (
+                                <span className="mt-1 block text-xs text-red-600">
+                                  {errors.preferredDate}
+                                </span>
+                              )}
                             </label>
-                            <label className="text-sm text-slate-700" htmlFor="preferred-time">Preferred time (IST)
-                              <input id="preferred-time" type="time" min="10:00" max="18:00" value={preferredTimeOfDay} onChange={(event) => {
-                                const value = event.target.value;
-                                setCustomRequestId("");
-                                setPreferredTimeOfDay(value);
-                                setErrors((current) => ({ ...current, preferredTime: "" }));
-                                updateField("preferredTime", [preferredDate && `Date: ${preferredDate}`, value && `Time: ${value} (${BOOKING_TIMEZONE})`].filter(Boolean).join(" · "));
-                              }} className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2" />
-                              {errors.preferredTime && <span className="mt-1 block text-xs text-red-600">{errors.preferredTime}</span>}
+                            <label
+                              className="text-sm text-slate-700"
+                              htmlFor="preferred-time"
+                            >
+                              Preferred time (IST)
+                              <input
+                                id="preferred-time"
+                                type="time"
+                                min="10:00"
+                                max="18:00"
+                                value={preferredTimeOfDay}
+                                onChange={(event) => {
+                                  const value = event.target.value;
+                                  setCustomRequestId("");
+                                  setPreferredTimeOfDay(value);
+                                  setErrors((current) => ({
+                                    ...current,
+                                    preferredTime: "",
+                                  }));
+                                  updateField(
+                                    "preferredTime",
+                                    [
+                                      preferredDate &&
+                                        `Date: ${preferredDate}`,
+                                      value &&
+                                        `Time: ${value} (${BOOKING_TIMEZONE})`,
+                                    ]
+                                      .filter(Boolean)
+                                      .join(" · "),
+                                  );
+                                }}
+                                className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2"
+                              />
+                              {errors.preferredTime && (
+                                <span className="mt-1 block text-xs text-red-600">
+                                  {errors.preferredTime}
+                                </span>
+                              )}
                             </label>
                           </div>
-                          <p className="text-xs leading-5 text-slate-600">This is a preference request only. It will not reserve a calendar slot and requires admin or therapist approval.</p>
+                          <p className="text-xs leading-5 text-slate-600">
+                            This is a preference request only. It will not
+                            reserve a calendar slot and requires admin or
+                            therapist approval.
+                          </p>
                         </div>
                       )}
                     </div>
-                    {(errors.selectedTime || errors.sessionType) && !customRequestOnly && (
-                      <p className="mt-3 text-sm text-red-600">
-                        {errors.selectedTime || errors.sessionType}
-                      </p>
-                    )}
+                    {(errors.selectedTime || errors.sessionType) &&
+                      !customRequestOnly && (
+                        <p className="mt-3 text-sm text-red-600">
+                          {errors.selectedTime || errors.sessionType}
+                        </p>
+                      )}
 
                     {booking.selectedTime && (
                       <div
-                        className="mt-4 shrink-0 rounded-xl border border-slate-200 bg-[#f8fbfb] p-3"
+                        className="mt-4 shrink-0 rounded-xl border border-slate-200 bg-[#f8fbfb] p-3.5"
                         aria-live="polite"
                       >
-                        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                        <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
                           Selected appointment
                         </p>
-                        <dl className="space-y-3 text-sm">
+                        <dl className="space-y-2 text-sm">
                           <div className="flex items-start justify-between gap-4">
                             <dt className="text-slate-500">Selected Date</dt>
                             <dd className="text-right font-semibold text-[#003044]">
@@ -1485,13 +1678,22 @@ export default function BookSessionPage() {
                       </div>
                     )}
 
-                    <button
-                      type="button"
-                      className="btn-primary mt-5 w-full"
-                      onClick={nextStep}
-                    >
-                      Continue
-                    </button>
+                    <div className="mt-5 flex gap-3">
+                      <button
+                        type="button"
+                        onClick={previousStep}
+                        className="btn-primary bg-[#f4f4f3] text-[#003044] hover:bg-[#e5e8ea]"
+                      >
+                        Back
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-primary flex-1"
+                        onClick={nextStep}
+                      >
+                        Continue
+                      </button>
+                    </div>
                     <p className="mt-3 text-center text-xs text-slate-500">
                       {customRequestOnly
                         ? "Your custom-time request will be sent for manual review without reserving a slot or starting payment."
@@ -1503,14 +1705,15 @@ export default function BookSessionPage() {
             </div>
           )}
 
+          {/* STEP 2: Booking Form */}
           {currentStep === 2 && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
+            <div className="mx-auto max-w-[1040px] rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_40px_rgba(0,48,68,0.05)] md:p-8">
               <h2 className="text-headline-lg mb-6 ui-heading">Booking Form</h2>
               <MotionSection
                 className="mb-8 rounded-xl border border-slate-200 bg-[#f8fbfb] p-5 md:p-6"
                 aria-labelledby="therapist-introduction"
               >
-                <div className="mb-5">
+                <div className="mb-4">
                   <p className="text-label-md uppercase tracking-[0.12em] text-[#506356]">
                     Meet your therapist
                   </p>
@@ -1526,9 +1729,9 @@ export default function BookSessionPage() {
                   {THERAPY_CONTENT.meetYourTherapist}
                 </div>
               </MotionSection>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="text-label-md ui-copy block mb-2">
+                  <label className="text-label-md ui-copy mb-2 block">
                     First Name
                   </label>
                   <input
@@ -1537,13 +1740,13 @@ export default function BookSessionPage() {
                     onChange={(e) => updateField("firstName", e.target.value)}
                   />
                   {errors.firstName && (
-                    <div className="text-sm text-red-600 mt-1">
+                    <div className="mt-1 text-sm text-red-600">
                       {errors.firstName}
                     </div>
                   )}
                 </div>
                 <div>
-                  <label className="text-label-md ui-copy block mb-2">
+                  <label className="text-label-md ui-copy mb-2 block">
                     Last Name
                   </label>
                   <input
@@ -1552,13 +1755,13 @@ export default function BookSessionPage() {
                     onChange={(e) => updateField("lastName", e.target.value)}
                   />
                   {errors.lastName && (
-                    <div className="text-sm text-red-600 mt-1">
+                    <div className="mt-1 text-sm text-red-600">
                       {errors.lastName}
                     </div>
                   )}
                 </div>
                 <div>
-                  <label className="text-label-md ui-copy block mb-2">
+                  <label className="text-label-md ui-copy mb-2 block">
                     Email
                   </label>
                   <input
@@ -1571,12 +1774,12 @@ export default function BookSessionPage() {
                     }}
                   />
                   {errors.email && (
-                    <div className="text-sm text-red-600 mt-1">
+                    <div className="mt-1 text-sm text-red-600">
                       {errors.email}
                     </div>
                   )}
                 </div>
-                <div className="md:col-span-2 -mt-3" aria-live="polite">
+                <div className="-mt-3 md:col-span-2" aria-live="polite">
                   {prefillLoading && (
                     <p className="text-sm text-slate-500">
                       Checking for your previous details…
@@ -1595,7 +1798,7 @@ export default function BookSessionPage() {
                 {isEmailValid && (
                   <>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Phone/WhatsApp Number
                       </label>
                       <input
@@ -1607,13 +1810,13 @@ export default function BookSessionPage() {
                         onChange={(e) => updateField("phone", e.target.value)}
                       />
                       {errors.phone && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.phone}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Gender
                       </label>
                       <select
@@ -1632,13 +1835,13 @@ export default function BookSessionPage() {
                         <option>Other</option>
                       </select>
                       {errors.identifyYourGender && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.identifyYourGender}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Date of Birth
                       </label>
                       <input
@@ -1649,13 +1852,13 @@ export default function BookSessionPage() {
                         onChange={(e) => updateField("dob", e.target.value)}
                       />
                       {errors.dob && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.dob}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Location
                       </label>
                       <input
@@ -1666,26 +1869,28 @@ export default function BookSessionPage() {
                         }
                       />
                       {errors.location && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.location}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Appointment Category
                       </label>
                       <p className="ghost-input">
-                        {booking.sessionCategory === "offline_session" ? "Offline Sessions (Clinic Only)" : "Online Sessions (Online Only)"}
+                        {booking.sessionCategory === "offline_session"
+                          ? "Offline Sessions (Clinic Only)"
+                          : "Online Sessions (Online Only)"}
                       </p>
                       {errors.sessionMode && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.sessionMode}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Relationship Status
                       </label>
                       <select
@@ -1704,13 +1909,13 @@ export default function BookSessionPage() {
                         <option>Other</option>
                       </select>
                       {errors.relationShipStatus && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.relationShipStatus}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Occupation{" "}
                         <span className="text-slate-500">(optional)</span>
                       </label>
@@ -1723,7 +1928,7 @@ export default function BookSessionPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Number of Children
                       </label>
                       <input
@@ -1739,13 +1944,13 @@ export default function BookSessionPage() {
                         }
                       />
                       {errors.numberOfChildren && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.numberOfChildren}
                         </div>
                       )}
                     </div>
                     <div>
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         How did you hear about us?
                       </label>
                       <select
@@ -1773,23 +1978,24 @@ export default function BookSessionPage() {
                         <option>Other</option>
                       </select>
                       {errors.whereuknowaboutus && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.whereuknowaboutus}
                         </div>
                       )}
                     </div>
                     <div className="md:col-span-2">
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Therapy Goals
                       </label>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                         {therapyGoalOptions.map((goal) => (
                           <label
                             key={goal}
-                            className="flex items-start gap-2 text-sm ui-copy"
+                            className="flex items-start gap-2.5 rounded-lg border border-slate-100 bg-[#fbfdfd] p-2.5 text-sm ui-copy transition-colors hover:border-slate-200"
                           >
                             <input
                               type="checkbox"
+                              className="mt-0.5 accent-[#00646a]"
                               checked={booking.therapyGoals.includes(goal)}
                               onChange={(e) =>
                                 updateField(
@@ -1807,7 +2013,7 @@ export default function BookSessionPage() {
                         ))}
                       </div>
                       {errors.therapyGoals && (
-                        <div className="text-sm text-red-600 mt-1">
+                        <div className="mt-1 text-sm text-red-600">
                           {errors.therapyGoals}
                         </div>
                       )}
@@ -1815,7 +2021,7 @@ export default function BookSessionPage() {
 
                     {booking.therapyGoals.includes("Other") && (
                       <div className="md:col-span-2">
-                        <label className="text-label-md ui-copy block mb-2">
+                        <label className="text-label-md ui-copy mb-2 block">
                           Other Therapy Goal
                         </label>
                         <input
@@ -1826,7 +2032,7 @@ export default function BookSessionPage() {
                           }
                         />
                         {errors.therapyGoalsOther && (
-                          <div className="text-sm text-red-600 mt-1">
+                          <div className="mt-1 text-sm text-red-600">
                             {errors.therapyGoalsOther}
                           </div>
                         )}
@@ -1836,6 +2042,7 @@ export default function BookSessionPage() {
                       <label className="flex items-center gap-2 text-sm ui-copy">
                         <input
                           type="checkbox"
+                          className="accent-[#00646a]"
                           checked={
                             booking.currentlyTakingAnyPsychiatricMedication
                           }
@@ -1852,7 +2059,7 @@ export default function BookSessionPage() {
 
                     {booking.currentlyTakingAnyPsychiatricMedication && (
                       <div className="md:col-span-2">
-                        <label className="text-label-md ui-copy block mb-2">
+                        <label className="text-label-md ui-copy mb-2 block">
                           Medication Details
                         </label>
                         <textarea
@@ -1863,14 +2070,14 @@ export default function BookSessionPage() {
                           }
                         />
                         {errors.medicationDetails && (
-                          <div className="text-sm text-red-600 mt-1">
+                          <div className="mt-1 text-sm text-red-600">
                             {errors.medicationDetails}
                           </div>
                         )}
                       </div>
                     )}
                     <div className="md:col-span-2">
-                      <label className="text-label-md ui-copy block mb-2">
+                      <label className="text-label-md ui-copy mb-2 block">
                         Additional Notes{" "}
                         <span className="text-slate-500">(optional)</span>
                       </label>
@@ -1883,16 +2090,17 @@ export default function BookSessionPage() {
                         placeholder="Add any additional notes here..."
                       />
                     </div>
-                    <div className="md:col-span-2 space-y-4 border-t border-slate-200 pt-5">
+                    <div className="space-y-4 border-t border-slate-200 pt-5 md:col-span-2">
                       <h3 className="text-headline-md ui-heading">
                         Informed Consent
                       </h3>
-                      <div className="whitespace-pre-line text-body-md ui-copy">
+                      <div className="max-h-56 overflow-y-auto rounded-xl border border-slate-200 bg-[#fafcfc] p-4 whitespace-pre-line text-body-md ui-copy">
                         {THERAPY_CONTENT.informedConsent}
                       </div>
-                      <label className="flex items-start gap-2 text-sm ui-copy">
+                      <label className="flex items-start gap-2.5 text-sm ui-copy">
                         <input
                           type="checkbox"
+                          className="mt-0.5 accent-[#00646a]"
                           checked={booking.informedConsent === "I agree"}
                           onChange={(e) => {
                             const value = e.target.checked ? "I agree" : "";
@@ -1912,9 +2120,10 @@ export default function BookSessionPage() {
                           {errors.InformedConsentforTherapySessions}
                         </div>
                       )}
-                      <label className="flex items-start gap-2 text-sm ui-copy">
+                      <label className="flex items-start gap-2.5 text-sm ui-copy">
                         <input
                           type="checkbox"
+                          className="mt-0.5 accent-[#00646a]"
                           checked={booking.conformationOfBooking}
                           onChange={(e) =>
                             updateField(
@@ -1938,7 +2147,7 @@ export default function BookSessionPage() {
                 )}
               </div>
 
-              <div className="flex justify-between mt-8">
+              <div className="mt-8 flex justify-between">
                 <button
                   type="button"
                   onClick={previousStep}
@@ -1957,49 +2166,88 @@ export default function BookSessionPage() {
             </div>
           )}
 
+          {/* STEP 3: Payment */}
           {currentStep === 3 && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
-              <h2 className="text-headline-lg mb-6 ui-heading">{customRequestOnly ? "Submit Custom Time Request" : "Payment"}</h2>
+            <div className="mx-auto max-w-[920px] rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_40px_rgba(0,48,68,0.05)] md:p-8">
+              <h2 className="text-headline-lg mb-6 ui-heading">
+                {customRequestOnly ? "Submit Custom Time Request" : "Payment"}
+              </h2>
               {customRequestOnly ? (
                 <div className="mb-6 rounded-xl border border-[#c9dfe0] bg-[#f4f9f9] p-5 text-sm leading-6 text-[#254b55]">
-                  <p><strong>Requested appointment:</strong> {formatSelectedDate(preferredDate)} at {preferredTimeOfDay} IST</p>
-                  <p className="mt-3">This request will be sent for Pending Manual Review. It will not reserve a calendar slot, confirm an appointment, or initiate payment. An admin or therapist will check availability and contact you.</p>
+                  <p>
+                    <strong>Requested appointment:</strong>{" "}
+                    {formatSelectedDate(preferredDate)} at {preferredTimeOfDay}{" "}
+                    IST
+                  </p>
+                  <p className="mt-3">
+                    This request will be sent for Pending Manual Review. It will
+                    not reserve a calendar slot, confirm an appointment, or
+                    initiate payment. An admin or therapist will check
+                    availability and contact you.
+                  </p>
                 </div>
               ) : (
                 <>
-              <div className="mb-6 rounded-xl border border-[#c9dfe0] bg-[#f4f9f9] p-5 text-sm leading-6 text-[#254b55]">
-                <p><strong>Selected appointment:</strong> {booking.selectedDate} at {booking.selectedTime} IST · {booking.sessionCategory === "offline_session" ? "Offline Sessions (Clinic Only)" : "Online Sessions (Online Only)"}</p>
-                <p className="mt-3">Please select your preferred appointment slot from the available timings.</p>
-                <p>Each session is approximately 60 minutes. A 30-minute buffer is maintained between appointments to allow adequate time between sessions.</p>
-                <p>If your preferred day or time is not listed, use “Select Custom Time” to request it for manual review.</p>
-                <p>Your appointment will be confirmed once the booking and payment process is completed.</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <button
-                  type="button"
-                  className={`rounded-2xl border p-5 text-left ${booking.paymentMethod === "cash" ? "border-[#003044] bg-[#ecf7f8]" : "border-slate-200 bg-[#f9fafb]"}`}
-                  onClick={() => updateField("paymentMethod", "cash")}
-                >
-                  <div className="text-label-md uppercase tracking-[0.12em]">
-                    Cash
+                  <div className="mb-6 rounded-xl border border-[#c9dfe0] bg-[#f4f9f9] p-5 text-sm leading-6 text-[#254b55]">
+                    <p>
+                      <strong>Selected appointment:</strong>{" "}
+                      {booking.selectedDate} at {booking.selectedTime} IST ·{" "}
+                      {booking.sessionCategory === "offline_session"
+                        ? "Offline Sessions (Clinic Only)"
+                        : "Online Sessions (Online Only)"}
+                    </p>
+                    <p className="mt-3">
+                      Please select your preferred appointment slot from the
+                      available timings.
+                    </p>
+                    <p>
+                      Each session is approximately 60 minutes. A 30-minute
+                      buffer is maintained between appointments to allow
+                      adequate time between sessions.
+                    </p>
+                    <p>
+                      If your preferred day or time is not listed, use “Select
+                      Custom Time” to request it for manual review.
+                    </p>
+                    <p>
+                      Your appointment will be confirmed once the booking and
+                      payment process is completed.
+                    </p>
                   </div>
-                  <div className="mt-2 text-body-lg">
-                    Pay in person / manual booking
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <button
+                      type="button"
+                      className={`rounded-2xl border p-5 text-left transition-all ${
+                        booking.paymentMethod === "cash"
+                          ? "border-[#00646a] bg-[#eef7f6] shadow-xs"
+                          : "border-slate-200 bg-[#f9fafb] hover:border-slate-300"
+                      }`}
+                      onClick={() => updateField("paymentMethod", "cash")}
+                    >
+                      <div className="text-label-md font-bold uppercase tracking-[0.12em] text-[#003044]">
+                        Cash
+                      </div>
+                      <div className="mt-2 text-body-lg text-slate-600">
+                        Pay in person / manual booking
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      className={`rounded-2xl border p-5 text-left transition-all ${
+                        booking.paymentMethod === "online"
+                          ? "border-[#00646a] bg-[#eef7f6] shadow-xs"
+                          : "border-slate-200 bg-[#f9fafb] hover:border-slate-300"
+                      }`}
+                      onClick={() => updateField("paymentMethod", "online")}
+                    >
+                      <div className="text-label-md font-bold uppercase tracking-[0.12em] text-[#003044]">
+                        Online Payment
+                      </div>
+                      <div className="mt-2 text-body-lg text-slate-600">
+                        Secure Razorpay checkout
+                      </div>
+                    </button>
                   </div>
-                </button>
-                <button
-                  type="button"
-                  className={`rounded-2xl border p-5 text-left ${booking.paymentMethod === "online" ? "border-[#003044] bg-[#ecf7f8]" : "border-slate-200 bg-[#f9fafb]"}`}
-                  onClick={() => updateField("paymentMethod", "online")}
-                >
-                  <div className="text-label-md uppercase tracking-[0.12em]">
-                    Online Payment
-                  </div>
-                  <div className="mt-2 text-body-lg">
-                    Secure Razorpay checkout
-                  </div>
-                </button>
-              </div>
                 </>
               )}
 
@@ -2007,7 +2255,7 @@ export default function BookSessionPage() {
                 <div className="mt-4 text-sm text-red-600">{errors.submit}</div>
               )}
 
-              <div className="flex justify-between mt-8">
+              <div className="mt-8 flex justify-between">
                 <button
                   type="button"
                   onClick={previousStep}
@@ -2028,38 +2276,52 @@ export default function BookSessionPage() {
                   disabled={isSubmitting || paymentProcessing}
                 >
                   {customRequestOnly
-                    ? isSubmitting ? "Submitting..." : "Submit Request"
+                    ? isSubmitting
+                      ? "Submitting..."
+                      : "Submit Request"
                     : booking.paymentMethod === "cash"
-                      ? isSubmitting ? "Processing..." : "Confirm Booking"
-                      : paymentProcessing ? "Processing Payment..." : "Pay Now"}
+                      ? isSubmitting
+                        ? "Processing..."
+                        : "Confirm Booking"
+                      : paymentProcessing
+                        ? "Processing Payment..."
+                        : "Pay Now"}
                 </button>
               </div>
             </div>
           )}
 
+          {/* STEP 4: Confirmation */}
           {currentStep === 4 && confirmation && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-10">
-              <div className="text-center mb-8">
-                <div className="text-5xl mb-3">✅</div>
+            <div className="mx-auto max-w-[840px] rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_40px_rgba(0,48,68,0.05)] md:p-10">
+              <div className="mb-8 text-center">
+                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#eef7f6] text-[#00646a]">
+                  <CheckCircle2 size={32} />
+                </div>
                 <h2 className="text-headline-lg ui-heading">
                   {confirmation.bookingStatus === "manual_review"
                     ? "Custom Time Request Received"
                     : confirmation.bookingStatus === "Pending"
-                    ? "Booking Request Received"
-                    : "Booking Confirmed"}
+                      ? "Booking Request Received"
+                      : "Booking Confirmed"}
                 </h2>
                 {confirmation.bookingStatus === "manual_review" ? (
                   <p className="mt-3 text-sm leading-6 text-slate-600">
-                    Your request is Pending Manual Review. No calendar slot was reserved and no payment was initiated. Our admin or therapist will check availability and contact you.
+                    Your request is Pending Manual Review. No calendar slot was
+                    reserved and no payment was initiated. Our admin or
+                    therapist will check availability and contact you.
                   </p>
-                ) : confirmation.bookingStatus === "Pending" && (
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    Your request is pending payment confirmation. The appointment is not confirmed yet.
-                  </p>
+                ) : (
+                  confirmation.bookingStatus === "Pending" && (
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      Your request is pending payment confirmation. The
+                      appointment is not confirmed yet.
+                    </p>
+                  )
                 )}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-body-md ui-copy">
+              <div className="grid grid-cols-1 gap-4 rounded-xl border border-slate-100 bg-[#fafcfc] p-5 text-body-md ui-copy md:grid-cols-2">
                 <div>
                   <strong>Booking ID:</strong>{" "}
                   {confirmation.bookingId || confirmation._id}
@@ -2079,11 +2341,19 @@ export default function BookSessionPage() {
                   {confirmation.sessionType || booking.sessionType}
                 </div>
                 <div>
-                  <strong>{confirmation.bookingStatus === "manual_review" ? "Requested Date:" : "Date:"}</strong>{" "}
+                  <strong>
+                    {confirmation.bookingStatus === "manual_review"
+                      ? "Requested Date:"
+                      : "Date:"}
+                  </strong>{" "}
                   {confirmation.selectedDate || booking.selectedDate}
                 </div>
                 <div>
-                  <strong>{confirmation.bookingStatus === "manual_review" ? "Requested Time:" : "Time:"}</strong>{" "}
+                  <strong>
+                    {confirmation.bookingStatus === "manual_review"
+                      ? "Requested Time:"
+                      : "Time:"}
+                  </strong>{" "}
                   {confirmation.selectedTime || booking.selectedTime}
                 </div>
                 <div>
@@ -2101,7 +2371,7 @@ export default function BookSessionPage() {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Link href="/" className="btn-primary">
                   Return Home
                 </Link>
@@ -2121,36 +2391,57 @@ export default function BookSessionPage() {
           )}
         </MotionReveal>
       </main>
+
       {customTimeOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/55 p-4" role="presentation">
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px]"
+          role="presentation"
+        >
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="custom-time-confirmation-title"
             className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl"
           >
-            <h2 id="custom-time-confirmation-title" className="text-xl font-semibold text-[#003044]">Select Custom Time</h2>
+            <h2
+              id="custom-time-confirmation-title"
+              className="text-xl font-semibold text-[#003044]"
+            >
+              Select Custom Time
+            </h2>
             <p className="mt-4 text-sm leading-6 text-slate-700">
-              Your preferred time is subject to availability and requires approval from our admin or therapist. Your appointment will only be confirmed after approval and completion of the booking and payment process.
+              Your preferred time is subject to availability and requires
+              approval from our admin or therapist. Your appointment will only
+              be confirmed after approval and completion of the booking and
+              payment process.
             </p>
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              <button type="button" className="btn-secondary" onClick={() => setCustomTimeOpen(false)}>Cancel</button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => setCustomTimeOpen(false)}
+              >
+                Cancel
+              </button>
               <button
                 type="button"
                 className="btn-primary"
                 onClick={() => {
                   setCustomTimeOpen(false);
-                                setCustomPreferenceEnabled(true);
-                                setCustomRequestOnly(true);
-                                const sessionType = customPreferenceCategory === "offline_session" ? "Offline" : "Online";
-                                setBooking((current) => ({
-                                  ...current,
-                                  selectedDate: "",
-                                  selectedTime: "",
-                                  sessionCategory: customPreferenceCategory,
-                                  sessionType,
-                                  sessionMode: sessionType,
-                                }));
+                  setCustomPreferenceEnabled(true);
+                  setCustomRequestOnly(true);
+                  const sessionType =
+                    customPreferenceCategory === "offline_session"
+                      ? "Offline"
+                      : "Online";
+                  setBooking((current) => ({
+                    ...current,
+                    selectedDate: "",
+                    selectedTime: "",
+                    sessionCategory: customPreferenceCategory,
+                    sessionType,
+                    sessionMode: sessionType,
+                  }));
                 }}
               >
                 Yes, Select Custom Time
