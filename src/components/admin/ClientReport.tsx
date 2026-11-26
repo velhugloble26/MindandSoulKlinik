@@ -3,6 +3,7 @@
 
 import { ADMIN_BOOKINGS, ADMIN_CLIENT_REPORT } from "@/utils/api";
 import { FormEvent, useCallback, useEffect, useState } from "react";
+import { ClipboardList } from "lucide-react";
 import {
   EmptyState,
   fieldClass,
@@ -300,7 +301,7 @@ export default function ClientReport() {
         <LoadingState label="Loading client report…" />
       ) : rows.length === 0 ? (
         <EmptyState
-          icon="assignment"
+          icon={ClipboardList}
           title="No client sessions found"
           body="Existing booking sessions will appear here automatically."
         />

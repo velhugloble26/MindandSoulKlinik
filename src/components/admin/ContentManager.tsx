@@ -16,6 +16,7 @@ import {
 } from "@/utils/api";
 
 import Image from "next/image";
+import { FileText, Image as ImageIcon } from "lucide-react";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import BlogContentEditor from "./BlogContentEditor";
 import {
@@ -187,7 +188,7 @@ export default function ContentManager({ kind }: { kind: Kind }) {
         <LoadingState label={`Loading ${config.plural.toLowerCase()}…`} />
       ) : items.length === 0 ? (
         <EmptyState
-          icon={kind === "blog" ? "article" : "photo_library"}
+          icon={kind === "blog" ? FileText : ImageIcon}
           title={`No ${config.plural.toLowerCase()} found`}
           body={
             search || category

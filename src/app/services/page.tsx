@@ -1,8 +1,8 @@
 
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { HoverZoomImage } from "@/components/ui/Motion";
 
 export const metadata: Metadata = {
   title: "Counselling Services",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    number: "01",
+    // number: "01",
     title: "Individual Counselling",
     image: "/01~mv2.avif",
     imageAlt: "Individual counselling",
@@ -35,7 +35,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    number: "02",
+    // number: "02",
     title: "Career Assessment & Counselling",
     image: "/02.avif",
     imageAlt: "Career assessment and counselling",
@@ -57,7 +57,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    number: "03",
+    // number: "03",
     title: "Family Counselling",
     image: "/03.avif",
     imageAlt: "Family counselling",
@@ -79,7 +79,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    number: "04",
+    // number: "04",
     title: "Relationship Building",
     image: "/04.avif",
     imageAlt: "Relationship counselling",
@@ -188,12 +188,12 @@ export default function ServicesPage() {
                 />
 
                 <div className="relative flex flex-col items-center rounded-3xl border border-[#dce8e7] bg-white/95 p-7 text-center shadow-[0_20px_50px_rgba(0,48,68,0.08)] sm:p-8">
-                  <Image
+                  <HoverZoomImage
                     src="/website_logo.avif"
                     alt="Mind and Soul Klinik"
                     width={216}
                     height={188}
-                    priority
+                    // priority
                     className="mx-auto h-auto max-h-[155px] w-auto object-contain"
                   />
 
@@ -296,11 +296,12 @@ export default function ServicesPage() {
                     </div>
                   </div>
                   <div className="service-card-image">
-                    <Image
+                    <HoverZoomImage
                       src={service.image}
                       alt={service.imageAlt}
                       width={800}
                       height={600}
+                      className="h-full w-full object-cover"
                     />
                   </div>
                 </article>

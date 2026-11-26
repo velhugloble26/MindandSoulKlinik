@@ -12,6 +12,7 @@ import {
   ADMIN_BOOKINGS,
 } from "@/utils/api";
 import { THERAPY_CONTENT } from "@/constants/therapyContent";
+import { CalendarDays } from "lucide-react";
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import {
@@ -326,7 +327,7 @@ export default function BookingsManager() {
         <LoadingState label="Loading bookings…" />
       ) : items.length === 0 ? (
         <EmptyState
-          icon="calendar_month"
+          icon={CalendarDays}
           title="No bookings found"
           body="Try changing the search or filters."
         />

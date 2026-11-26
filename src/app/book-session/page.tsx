@@ -967,13 +967,13 @@ export default function BookSessionPage() {
       <main className="mx-auto max-w-[1680px] px-[clamp(1rem,4vw,3.5rem)] py-8 md:py-12">
         <MotionReveal>
           {/* Editorial Header */}
-          <div className="mb-8 flex flex-col gap-4 border-b border-[#e4e1d8] pb-7 lg:flex-row lg:items-end lg:justify-between">
+          <div className="mb-8 flex flex-col gap-4 border-b border-[#dce8e7] pb-7 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#B89545]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#4c858a]">
                 Mind And Soul Klinic · Appointments
               </p>
-              <h1 className="text-headline-lg mt-2 text-[#003044] ui-heading">
-                Book a Session
+              <h1 className="heading-xl mt-6 text-left text-[#003044]">
+                  Book a Session
               </h1>
               <p className="mt-2.5 max-w-xl text-body-lg text-[#4a666a] ui-copy">
                 Choose a session type, then select a date and time that works
@@ -1057,7 +1057,7 @@ export default function BookSessionPage() {
               <div
                 role="tablist"
                 aria-label="Filter therapy categories"
-                className="mb-8 flex flex-wrap items-center gap-2 border-b border-[#e7e4dc] pb-4"
+                className="mb-8 flex flex-wrap items-center gap-2 border-b border-[#dce8e7] pb-4"
               >
                 <button
                   type="button"
@@ -1098,11 +1098,11 @@ export default function BookSessionPage() {
               <div className="space-y-10">
                 {visiblePackages.map((pkg) => (
                   <section key={pkg.id} aria-label={pkg.name}>
-                    <div className="mb-1 flex items-center justify-between border-b-2 border-[#C5A253] pb-2">
-                      <h2 className="text-base font-extrabold uppercase tracking-[0.12em] text-[#B89545] sm:text-lg md:text-xl">
+                    <div className="mb-1 flex items-center justify-between border-b-2 border-[#75b9b2] pb-2">
+                      <h2 className="text-base font-extrabold uppercase tracking-[0.12em] text-[#00646a] sm:text-lg md:text-xl">
                         {pkg.name}
                       </h2>
-                      <span className="text-[11px] font-medium uppercase tracking-wider text-[#9c8244]">
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-[#4c858a]">
                         {pkg.sessions.length}{" "}
                         {pkg.sessions.length === 1 ? "Option" : "Options"}
                       </span>
@@ -1149,7 +1149,7 @@ export default function BookSessionPage() {
                                     {session.name}
                                   </h3>
                                   {isPopular && (
-                                    <span className="inline-flex items-center rounded-full border border-[#dfc584] bg-[#fbf6ea] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#9c7724]">
+                                    <span className="inline-flex items-center rounded-full border border-[#a1d5d0] bg-[#eaf7f4] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#00646a]">
                                       Most Chosen
                                     </span>
                                   )}

@@ -3,6 +3,7 @@
 
 import { FormEvent, ReactNode, useEffect, useState } from "react";
 import { useLenis } from "lenis/react";
+import { Inbox, LoaderCircle, Search, X, type LucideIcon } from "lucide-react";
 
 let activeModalCount = 0;
 let previousOverflow: { body: string; root: string } | null = null;
@@ -82,28 +83,24 @@ export function Notice({
 export function LoadingState({ label = "Loading…" }: { label?: string }) {
   return (
     <div className="admin-state">
-      <span className="material-symbols-outlined animate-spin">
-        progress_activity
-      </span>
+      <LoaderCircle className="animate-spin" size={28} aria-hidden="true" />
       <span>{label}</span>
     </div>
   );
 }
 
 export function EmptyState({
-  icon = "inbox",
+  icon: Icon = Inbox,
   title,
   body,
 }: {
-  icon?: string;
+  icon?: LucideIcon;
   title: string;
   body: string;
 }) {
   return (
     <div className="admin-state">
-      <span className="material-symbols-outlined text-4xl ui-accent">
-        {icon}
-      </span>
+      <Icon className="ui-accent" size={36} aria-hidden="true" />
       <h2 className="text-headline-lg ui-heading">{title}</h2>
       <p className="ui-copy">{body}</p>
     </div>
@@ -163,7 +160,7 @@ export function Modal({
   }, [onClose]);
   return (
     <div
-      className="fixed inset-0 z-50 grid place-items-center overscroll-contain bg-on-primary-fixed/45 p-3 backdrop-blur-sm sm:p-6"
+      className="admin-modal-backdrop fixed inset-0 z-50 grid place-items-center overscroll-contain p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
       <section
@@ -179,7 +176,7 @@ export function Modal({
             onClick={onClose}
             aria-label="Close"
           >
-            <span className="material-symbols-outlined">close</span>
+            <X size={20} aria-hidden="true" />
           </button>
         </header>
         <div className="p-5 sm:p-6">{children}</div>
@@ -251,7 +248,7 @@ export function SearchBar({
   return (
     <form onSubmit={submit} className="admin-toolbar">
       <label className="admin-search">
-        <span className="material-symbols-outlined">search</span>
+        <Search size={18} aria-hidden="true" />
         <input
           value={draft}
           onChange={(e) => setDraft(e.target.value)}

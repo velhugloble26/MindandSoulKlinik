@@ -78,14 +78,14 @@ export default function AdminShell({
 
   if (checking) {
     return (
-      <main className="min-h-screen grid place-items-center surface-base">
+      <main className="admin-shell surface-base grid min-h-screen place-items-center">
         <div className="admin-state">Checking administrator access…</div>
       </main>
     );
   }
 
   return (
-    <div className="min-h-screen surface-base lg:grid lg:grid-cols-[270px_1fr]">
+    <div className="admin-shell surface-base min-h-screen lg:grid lg:grid-cols-[270px_1fr]">
       <header className="lg:hidden sticky top-0 z-40 glass-nav border-b border-surface px-4 py-3 flex items-center justify-between">
         <Link href="/admin" className="text-headline-md ui-heading">
           Mind And Soul Klinic Admin

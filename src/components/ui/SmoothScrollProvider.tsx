@@ -28,6 +28,8 @@ export default function SmoothScrollProvider({
         lerp: 0.1,
         duration: 1.2,
         smoothWheel: true,
+        anchors: true,
+        respectReducedMotion: true,
       }}
     >
       {children}

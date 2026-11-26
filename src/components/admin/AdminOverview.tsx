@@ -9,35 +9,51 @@ import {
 } from "@/utils/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LoadingState, Notice, PageHeader, requestApi } from "./AdminUI";
-import { Loader2 } from "lucide-react";
+import { Notice, PageHeader, requestApi } from "./AdminUI";
+import {
+  CalendarCheck,
+  CalendarDays,
+  FilePlus2,
+  FileText,
+  Image as ImageIcon,
+  ImagePlus,
+  Loader2,
+  Mail,
+  MailCheck,
+  MessageSquareQuote,
+} from "lucide-react";
 
 const sources = [
-  [
-    "Bookings",
-    ADMIN_BOOKINGS + "?limit=1",
-    "/admin/bookings",
-    "calendar_month",
-  ],
-  ["Blogs", GET_ALL_BLOGS + "?limit=1", "/admin/blogs", "article"],
-  [
-    "Gallery items",
-    GET_ALL_GALLERY + "?limit=1",
-    "/admin/gallery",
-    "photo_library",
-  ],
-  [
-    "Contact enquiries",
-    GET_ALL_CONTACTS + "?limit=1",
-    "/admin/enquiries",
-    "mail",
-  ],
-  [
-    "Quick quotes",
-    GET_ALL_QUOTES + "?limit=1",
-    "/admin/enquiries",
-    "request_quote",
-  ],
+  {
+    label: "Bookings",
+    url: ADMIN_BOOKINGS + "?limit=1",
+    href: "/admin/bookings",
+    icon: CalendarDays,
+  },
+  {
+    label: "Blogs",
+    url: GET_ALL_BLOGS + "?limit=1",
+    href: "/admin/blogs",
+    icon: FileText,
+  },
+  {
+    label: "Gallery items",
+    url: GET_ALL_GALLERY + "?limit=1",
+    href: "/admin/gallery",
+    icon: ImageIcon,
+  },
+  {
+    label: "Contact enquiries",
+    url: GET_ALL_CONTACTS + "?limit=1",
+    href: "/admin/enquiries",
+    icon: Mail,
+  },
+  {
+    label: "Quick quotes",
+    url: GET_ALL_QUOTES + "?limit=1",
+    href: "/admin/enquiries",
+    icon: MessageSquareQuote,
+  },
 ] as const;
 
 export default function AdminOverview() {
@@ -46,7 +62,7 @@ export default function AdminOverview() {
   const [error, setError] = useState("");
   useEffect(() => {
     Promise.all(
-      sources.map(async ([label, url]) => {
+      sources.map(async ({ label, url }) => {
         const payload = await requestApi(url);
         return [label, payload.data?.pagination?.total || 0] as const;
       }),
@@ -72,15 +88,13 @@ export default function AdminOverview() {
       ) : (
         <>
           <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            {sources.map(([label, , href, icon]) => (
+            {sources.map(({ label, href, icon: Icon }) => (
               <Link
                 href={href}
                 className="admin-card p-5 transition hover:-translate-y-0.5 hover:shadow-md"
                 key={label}
               >
-                <span className="material-symbols-outlined ui-accent">
-                  {icon}
-                </span>
+                <Icon className="ui-accent" size={22} aria-hidden="true" />
                 <p className="mt-4 text-3xl font-semibold ui-heading">
                   {stats[label] || 0}
                 </p>
@@ -93,25 +107,19 @@ export default function AdminOverview() {
             <p className="mt-1 ui-copy">Common administration tasks.</p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <Link className="admin-action-card" href="/admin/bookings">
-                <span className="material-symbols-outlined">
-                  event_available
-                </span>
+                <CalendarCheck size={20} aria-hidden="true" />
                 Manage bookings
               </Link>
               <Link className="admin-action-card" href="/admin/blogs">
-                <span className="material-symbols-outlined">post_add</span>
+                <FilePlus2 size={20} aria-hidden="true" />
                 Publish a blog
               </Link>
               <Link className="admin-action-card" href="/admin/gallery">
-                <span className="material-symbols-outlined">
-                  add_photo_alternate
-                </span>
+                <ImagePlus size={20} aria-hidden="true" />
                 Add gallery item
               </Link>
               <Link className="admin-action-card" href="/admin/enquiries">
-                <span className="material-symbols-outlined">
-                  mark_email_unread
-                </span>
+                <MailCheck size={20} aria-hidden="true" />
                 Review enquiries
               </Link>
             </div>

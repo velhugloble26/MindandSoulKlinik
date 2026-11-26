@@ -162,7 +162,7 @@ export default function SignupPage() {
   }
   return (
     <main className="auth-page">
-      <MotionReveal className="auth-card">
+      <MotionReveal className="auth-card auth-card-wide">
         <h1 className="text-headline-lg auth-title ui-heading">
           {step === "details" ? "Create an account" : "Verify your email"}
         </h1>
@@ -213,7 +213,7 @@ export default function SignupPage() {
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   aria-pressed={showPassword}
                   onClick={() => setShowPassword((visible) => !visible)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#5a6770] hover:text-[#173f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6a8ea1]"
+                  className="auth-password-toggle"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -233,7 +233,7 @@ export default function SignupPage() {
                   aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   aria-pressed={showConfirmPassword}
                   onClick={() => setShowConfirmPassword((visible) => !visible)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#5a6770] hover:text-[#173f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6a8ea1]"
+                  className="auth-password-toggle"
                 >
                   {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -277,7 +277,7 @@ export default function SignupPage() {
             </button>
             <button
               type="button"
-              className="text-ui font-medium text-[#173f4d] underline disabled:cursor-not-allowed disabled:opacity-50"
+              className="auth-secondary-action"
               disabled={loading || resendSeconds > 0}
               onClick={resendOtp}
             >
@@ -287,7 +287,7 @@ export default function SignupPage() {
             </button>
             <button
               type="button"
-              className="text-ui text-[#5a6770] underline"
+              className="auth-secondary-action"
               disabled={loading}
               onClick={() => {
                 setStep("details");
@@ -328,7 +328,7 @@ function AuthField({
       {error ? (
         <span className="auth-inline-message mt-1 block">{error}</span>
       ) : hint ? (
-        <span className="mt-1 block text-caption text-[#5a6770]">{hint}</span>
+        <span className="auth-hint">{hint}</span>
       ) : null}
     </div>
   );

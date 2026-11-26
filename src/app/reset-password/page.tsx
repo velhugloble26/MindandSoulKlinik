@@ -101,7 +101,7 @@ function ResetPasswordForm() {
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   aria-pressed={showPassword}
                   onClick={() => setShowPassword((visible) => !visible)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#5a6770] hover:text-[#173f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6a8ea1]"
+                  className="auth-password-toggle"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -132,7 +132,7 @@ function ResetPasswordForm() {
                   aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   aria-pressed={showConfirmPassword}
                   onClick={() => setShowConfirmPassword((visible) => !visible)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#5a6770] hover:text-[#173f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6a8ea1]"
+                  className="auth-password-toggle"
                 >
                   {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>

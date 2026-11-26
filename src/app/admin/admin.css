@@ -1,3 +1,76 @@
+.admin-shell {
+  --color-primary: var(--heading);
+  --color-secondary: var(--primary);
+  --color-secondary-container: var(--card-therapy);
+  --color-surface: var(--white);
+  --color-surface-container: var(--card-assessment);
+  --color-surface-container-low: var(--section-background);
+  --color-surface-container-lowest: var(--white);
+  --color-surface-variant: rgba(0, 95, 119, 0.14);
+  --color-outline-variant: rgba(0, 95, 119, 0.22);
+  --color-on-surface: var(--heading);
+  --color-on-surface-variant: var(--body-text);
+  --color-soft-teal: #4c9c90;
+  --color-deep-forest: #1f6b50;
+  --color-stone-grey: #648b8e;
+  --color-error: #b4232c;
+  --color-error-container: #fbe3e3;
+  --color-on-error-container: #7a1f26;
+  --color-on-primary-fixed: #003044;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+  --text-caption: 0.75rem;
+  --font-weight-semibold: 600;
+  color: var(--heading);
+  background: var(--section-background);
+}
+.admin-shell.surface-base {
+  background: var(--section-background);
+}
+.admin-shell .surface-base,
+.admin-shell .surface-lowest {
+  background: var(--white);
+}
+.admin-shell .surface-low {
+  background: var(--section-background);
+}
+.admin-shell .surface-container {
+  background: var(--card-assessment);
+}
+.admin-shell .ui-heading {
+  color: var(--heading);
+}
+.admin-shell .ui-copy {
+  color: var(--body-text);
+}
+.admin-shell .ui-muted {
+  color: var(--body-text);
+}
+.admin-shell .ui-accent {
+  color: var(--color-soft-teal);
+}
+.admin-shell .text-headline-lg {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.2;
+}
+.admin-shell .text-headline-md {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.3;
+}
+.admin-shell .text-label-md {
+  font-size: 0.8rem;
+}
+.admin-shell .border-surface {
+  border-color: var(--color-surface-variant);
+}
+.admin-modal-backdrop {
+  background: rgba(0, 48, 68, 0.45);
+}
+.admin-shell .glass-nav {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+}
+
 .admin-nav-link {
   display: flex;
   align-items: center;
@@ -250,6 +323,17 @@ textarea.admin-field {
 }
 .admin-action-card:hover {
   background: var(--color-surface-container-low);
+}
+.admin-icon-button:focus-visible,
+.admin-button-secondary:focus-visible,
+.admin-button-danger:focus-visible,
+.admin-button-quiet:focus-visible,
+.admin-nav-link:focus-visible,
+.admin-search:focus-within,
+.admin-filter:focus-visible,
+.admin-field:focus-visible {
+  outline: 2px solid var(--color-soft-teal);
+  outline-offset: 2px;
 }
 @media (max-width: 640px) {
   .admin-toolbar > * {
