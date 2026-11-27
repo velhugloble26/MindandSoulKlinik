@@ -7,6 +7,7 @@ import FloatingContactActions from "@/components/FloatingContactActions";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import InitialLogoLoader from "@/components/InitialLogoLoader";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import YouTubeShortsPlayer from "@/components/YouTubeShortsPlayer";
 
 const ebGaramond = localFont({
   src: [
@@ -104,6 +105,7 @@ export default function RootLayout({
           {/* <EnquiryModal /> */}
           <Footer />
           <FloatingContactActions />
+          <YouTubeShortsPlayer />
           <MobileBottomNav />
         </SmoothScrollProvider>
       </body>

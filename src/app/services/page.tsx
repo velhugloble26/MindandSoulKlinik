@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    // number: "01",
+    number: "01",
     title: "Individual Counselling",
     image: "/01~mv2.avif",
     imageAlt: "Individual counselling",
@@ -35,7 +35,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    // number: "02",
+    number: "02",
     title: "Career Assessment & Counselling",
     image: "/02.avif",
     imageAlt: "Career assessment and counselling",
@@ -57,7 +57,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    // number: "03",
+    number: "03",
     title: "Family Counselling",
     image: "/03.avif",
     imageAlt: "Family counselling",
@@ -79,7 +79,7 @@ const services = [
     button: "Book a Session",
   },
   {
-    // number: "04",
+    number: "04",
     title: "Relationship Building",
     image: "/04.avif",
     imageAlt: "Relationship counselling",
@@ -260,10 +260,6 @@ export default function ServicesPage() {
                   className={`service-card-layout${index % 2 === 1 ? " service-card-reverse" : ""}`}
                 >
                   <div className="service-card-content">
-                    <div className="service-card-number">
-                      <span>{service.number}</span>
-                      <span aria-hidden="true" />
-                    </div>
                     <h3 className="heading-md">{service.title}</h3>
                     <p className="service-card-subtitle mt-3">
                       {service.subtitle}
